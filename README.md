@@ -59,7 +59,7 @@ git add .
 ```
 (git add and then a period)  
 
-3. Next, commit your changes. This flattens all your modifications and saves them to your local repository. **(saving the files to your machine is not the same as saving to your local repository. They are saved to a seperate, hidden folder)**. Commit like so and add a commit message saying what you've done for future reference:  
+4. Next, commit your changes. This flattens all your modifications and saves them to your local repository. **(saving the files to your machine is not the same as saving to your local repository. They are saved to a seperate, hidden folder)**. Commit like so and add a commit message saying what you've done for future reference:  
 
 ```
 git commit -m "Added name to PRACTICE.txt"
@@ -68,14 +68,14 @@ git commit -m "Added name to PRACTICE.txt"
 ```
 git remote add origin https://github.com/Chabot-Software-Team/mobile-app.git
 ```  
-4. Now make sure that you are up to date with the remote repository before you push your own changes. You'll want to do this everytime before you start making changes (we did a clone instead, but after that, use pull), and before you push. That way, you can minimize merge conflicts or resolve them if they happen. 
+6. Now make sure that you are up to date with the remote repository before you push your own changes. You'll want to do this everytime before you start making changes (we did a clone instead, but after that, use pull), and before you push. That way, you can minimize merge conflicts or resolve them if they happen. 
 
 ```
 git pull origin main
 ```
 (main is called a branch, don't worry about that for now). You should see a message saying * branch main -> FETCH_HEAD "Already up to date."  
 
-5. Nice, now you can upload your changes.
+7. Nice, now you can upload your changes.
 
 ```
 git push origin main
