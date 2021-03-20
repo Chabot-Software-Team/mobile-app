@@ -9,7 +9,9 @@ export default function NavigationPage(props) {
   return (
     <View style={styles.container}>
       <View style={styles.buttonRow}>
-        <TouchableOpacity onPress={() => navigation.navigate("Movies")}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("MoviePlayerStackScreen")}
+        >
           <Ionicons name='play-skip-forward-outline' size={20} />
           <Text>Movies</Text>
         </TouchableOpacity>
