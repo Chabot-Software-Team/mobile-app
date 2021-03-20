@@ -10,10 +10,6 @@ import AudioPlayer from "../pages/AudioPlayer";
 import NavigationPage from "../pages/NavigationPage";
 import QrScan from "../pages/QrScan";
 
-import Movies from "../pages/Movies";
-
-import Movie1 from "../pages/movieDetails/Movie1";
-
 import Page1 from "../pages/articles/Page1";
 
 const HomeStack = createStackNavigator();
@@ -22,16 +18,6 @@ function HomeStackScreen() {
     <HomeStack.Navigator>
       <HomeStack.Screen name='Home' component={Home} />
     </HomeStack.Navigator>
-  );
-}
-
-const MoviePlayerStack = createStackNavigator();
-function MoviePlayerStackScreen() {
-  return (
-    <MoviePlayerStack.Navigator>
-      <MoviePlayerStack.Screen name='Movies' component={Movies} />
-      <MoviePlayerStack.Screen name='Movie1' component={Movie1} />
-    </MoviePlayerStack.Navigator>
   );
 }
 
@@ -60,16 +46,14 @@ function NavigationPageStackScreen() {
   return (
     <NavigationPageStack.Navigator>
       <NavigationPageStack.Screen
-        name='NavigationPage'
+        name='Realtime Chabot Info'
         component={NavigationPage}
-      />
-      <NavigationPageStack.Screen
-        name='Movies'
-        component={MoviePlayerStackScreen}
       />
     </NavigationPageStack.Navigator>
   );
 }
+
+
 
 const Tab = createBottomTabNavigator();
 export default function App() {
