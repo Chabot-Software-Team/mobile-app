@@ -33,7 +33,6 @@ export default function QrScan() {
   const [text, setText] = useState("");
   function navigate(text) {
     if (text == "111") {
-      alert("Something is wrong");
       navigation.navigate("../pages/articles/Page1");
     } else {
       alert("Invalid code");

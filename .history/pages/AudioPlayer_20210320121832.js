@@ -29,7 +29,6 @@ const windowHeight = Dimensions.get("window").height;
 const sound = new Audio.Sound();
 
 export default function AudioPlayer() {
-  /*
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackStatus, setPlaybackStatus] = useState();
 
@@ -55,7 +54,6 @@ export default function AudioPlayer() {
 
   //Takes a value of time in milliseconds and converts it into a minutes seconds string like 3:43
   function millisToTime(millis) {
-    
     let seconds = Math.floor(millis / 1000);
     let minutes = Math.floor(seconds / 60);
     seconds -= minutes * 60;
@@ -80,7 +78,7 @@ export default function AudioPlayer() {
       console.log(error);
     }
   }
-  */
+
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flex: 0.5 }}></View>
@@ -108,10 +106,10 @@ export default function AudioPlayer() {
       </View>
       <View style={{ flex: 0.5, flexDirection: "row" }}>
         <View style={{ flex: 1 }}>
-          <Text style={{ paddingLeft: 20 }}>{/*renderDuration()*/}</Text>
+          <Text style={{ paddingLeft: 20 }}>{renderDuration()}</Text>
         </View>
         <View style={{ flex: 1, alignItems: "flex-end" }}>
-          <Text style={{ paddingRight: 20 }}>{/*renderPosition()*/}</Text>
+          <Text style={{ paddingRight: 20 }}>{renderPosition()}</Text>
         </View>
       </View>
 

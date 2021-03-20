@@ -108,10 +108,10 @@ export default function AudioPlayer() {
       </View>
       <View style={{ flex: 0.5, flexDirection: "row" }}>
         <View style={{ flex: 1 }}>
-          <Text style={{ paddingLeft: 20 }}>{/*renderDuration()*/}</Text>
+          <Text style={{ paddingLeft: 20 }}>{renderDuration()}</Text>
         </View>
         <View style={{ flex: 1, alignItems: "flex-end" }}>
-          <Text style={{ paddingRight: 20 }}>{/*renderPosition()*/}</Text>
+          <Text style={{ paddingRight: 20 }}>{renderPosition()}</Text>
         </View>
       </View>
 
