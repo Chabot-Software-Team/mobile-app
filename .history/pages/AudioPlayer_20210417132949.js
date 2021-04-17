@@ -1,4 +1,10 @@
+/*
+Todo:
+0. Slider
+1. skip track
+2. playback speed
 
+*/
 
 import React from "react";
 import { useState } from "react";
@@ -125,7 +131,7 @@ export default function AudioPlayer() {
           source={require("../assets/images/hairGod.jpg")}
         ></Image>
         <Text style={{ alignSelf: "center", justifyContent: "center" }}>
-          Audio Branch
+          Description
         </Text>
       </View>
       <View

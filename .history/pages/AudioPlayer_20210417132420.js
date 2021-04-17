@@ -1,4 +1,10 @@
+/*
+Todo:
+0. Slider
+1. skip track
+2. playback speed
 
+*/
 
 import React from "react";
 import { useState } from "react";
@@ -22,9 +28,6 @@ const windowHeight = Dimensions.get("window").height;
 
 const sound = new Audio.Sound();
 
-// Import JSON
-import * as data from './songs.json';
-
 export default function AudioPlayer() {
   
   const [isPlaying, setIsPlaying] = useState(false);
@@ -35,18 +38,10 @@ export default function AudioPlayer() {
 
   class SongHandler {
     constructor(){
-      this.songs = [];
-      this.currSong = 0;
-      // read JSON and add song obj
-    }
-    addSongs(){
-      
+      this.songs = []
     }
     getNextSrc(){
-      // next song
-      currSong++;
-      //get next song src
-      return this.songs[currSong].src;
+      
     }
   }
 
@@ -82,8 +77,8 @@ export default function AudioPlayer() {
   };
 
 
-  function setPosition(value){
-    alert("You changed postition to " + value);
+  function setPosition(){
+    alert("You changed postition");
   }
 
   //Takes a value of time in milliseconds and converts it into a minutes seconds string like 3:43
@@ -125,7 +120,7 @@ export default function AudioPlayer() {
           source={require("../assets/images/hairGod.jpg")}
         ></Image>
         <Text style={{ alignSelf: "center", justifyContent: "center" }}>
-          Audio Branch
+          Description
         </Text>
       </View>
       <View
@@ -137,9 +132,7 @@ export default function AudioPlayer() {
       >
         <View style={{ flex: 1 }}></View>
         <View style={{ flex: 20 }}>
-
-          <Slider value = {0.5}  onValueChange = {() =>setPosition(value)}minimumValue={0} maximumValue={1} thumbTintColor='#04A5BA' />
-
+          <Slider onValueChange = {() =>setPosition()}minimumValue={0} maximumValue={1} thumbTintColor='#04A5BA' />
         </View>
         <View style={{ flex: 1 }}></View>
       </View>

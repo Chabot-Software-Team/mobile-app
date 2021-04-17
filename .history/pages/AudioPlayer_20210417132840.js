@@ -1,4 +1,10 @@
+/*
+Todo:
+0. Slider
+1. skip track
+2. playback speed
 
+*/
 
 import React from "react";
 import { useState } from "react";
@@ -23,7 +29,7 @@ const windowHeight = Dimensions.get("window").height;
 const sound = new Audio.Sound();
 
 // Import JSON
-import * as data from './songs.json';
+import * as data from './example.json';
 
 export default function AudioPlayer() {
   
@@ -38,6 +44,8 @@ export default function AudioPlayer() {
       this.songs = [];
       this.currSong = 0;
       // read JSON and add song obj
+
+const word = data.name;
     }
     addSongs(){
       
@@ -125,7 +133,7 @@ export default function AudioPlayer() {
           source={require("../assets/images/hairGod.jpg")}
         ></Image>
         <Text style={{ alignSelf: "center", justifyContent: "center" }}>
-          Audio Branch
+          Description
         </Text>
       </View>
       <View
