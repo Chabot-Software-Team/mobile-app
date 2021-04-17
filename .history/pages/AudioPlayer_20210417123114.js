@@ -35,20 +35,12 @@ export default function AudioPlayer() {
 
   async function loadAudio() {
     await sound.loadAsync(require("../assets/audio/Roar.mp3"));
-    alert(renderDuration());
     setPlaybackStatus(sound.getStatusAsync());
   }
-
-  async function handleNext(){
-    await sound.unloadAsync();
-    await sound.loadAsync((require("../assets/audio/show.mp3")));
-    setPlaybackStatus(sound.getStatusAsync()); 
-  }
-
   
   loadAudio();
   
-  //sound.setOnPlaybackStatusUpdate();
+  //sound.setOnPlaybackStatusUpdate(setPlaybackStatus(sound.getStatusAsync()));
   
   const handlePausePress = async () => {
     try {
@@ -145,7 +137,7 @@ export default function AudioPlayer() {
         <TouchableOpacity onPress={() => handlePausePress()}>
           <Ionicons name='play-forward-outline' size={windowWidth / 6} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleNext()}>
+        <TouchableOpacity onPress={() => alert("hello")}>
           <Ionicons name='play-skip-forward-outline' size={windowWidth / 6} />
         </TouchableOpacity>
       </View>

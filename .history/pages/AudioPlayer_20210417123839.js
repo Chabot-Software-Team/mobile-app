@@ -35,7 +35,6 @@ export default function AudioPlayer() {
 
   async function loadAudio() {
     await sound.loadAsync(require("../assets/audio/Roar.mp3"));
-    alert(renderDuration());
     setPlaybackStatus(sound.getStatusAsync());
   }
 
@@ -48,7 +47,7 @@ export default function AudioPlayer() {
   
   loadAudio();
   
-  //sound.setOnPlaybackStatusUpdate();
+  //sound.setOnPlaybackStatusUpdate(setPlaybackStatus(sound.getStatusAsync()));
   
   const handlePausePress = async () => {
     try {

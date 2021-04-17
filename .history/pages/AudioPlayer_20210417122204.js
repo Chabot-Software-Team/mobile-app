@@ -35,21 +35,10 @@ export default function AudioPlayer() {
 
   async function loadAudio() {
     await sound.loadAsync(require("../assets/audio/Roar.mp3"));
-    alert(renderDuration());
     setPlaybackStatus(sound.getStatusAsync());
   }
-
-  async function handleNext(){
-    await sound.unloadAsync();
-    await sound.loadAsync((require("../assets/audio/show.mp3")));
-    setPlaybackStatus(sound.getStatusAsync()); 
-  }
-
-  
   loadAudio();
-  
-  //sound.setOnPlaybackStatusUpdate();
-  
+  sound.setOnPlaybackStatusUpdate(setPlaybackStatus(sound.getStatusAsync()));
   const handlePausePress = async () => {
     try {
       if (isPlaying == true) {
@@ -77,7 +66,6 @@ export default function AudioPlayer() {
     }
     return minutes + ":" + seconds;
   }
-
   function renderDuration() {
     try {
       return millisToTime(playbackStatus.positionMillis);
@@ -93,7 +81,6 @@ export default function AudioPlayer() {
     }
   }
   
-
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flex: 0.5 }}></View>
@@ -121,10 +108,10 @@ export default function AudioPlayer() {
       </View>
       <View style={{ flex: 0.5, flexDirection: "row" }}>
         <View style={{ flex: 1 }}>
-          <Text style={{ paddingLeft: 20 }}>{renderDuration()}</Text>
+          <Text style={{ paddingLeft: 20 }}>{/*renderDuration()*/}</Text>
         </View>
         <View style={{ flex: 1, alignItems: "flex-end" }}>
-          <Text style={{ paddingRight: 20 }}>{renderPosition()}</Text>
+          <Text style={{ paddingRight: 20 }}>{/*renderPosition()*/}</Text>
         </View>
       </View>
 
@@ -145,7 +132,7 @@ export default function AudioPlayer() {
         <TouchableOpacity onPress={() => handlePausePress()}>
           <Ionicons name='play-forward-outline' size={windowWidth / 6} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleNext()}>
+        <TouchableOpacity onPress={() => alert("hello")}>
           <Ionicons name='play-skip-forward-outline' size={windowWidth / 6} />
         </TouchableOpacity>
       </View>
