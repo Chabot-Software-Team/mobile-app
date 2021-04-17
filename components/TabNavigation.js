@@ -9,6 +9,7 @@ import Home from "../pages/Home";
 import AudioPlayer from "../pages/AudioPlayer";
 import NavigationPage from "../pages/NavigationPage";
 import QrScan from "../pages/QrScan";
+import Calendar from "../pages/Calendar.js";
 
 import Page1 from "../pages/articles/Page1";
 
@@ -40,6 +41,15 @@ function QrScanStackScreen() {
   );
 }
 
+const CalendarStack = createStackNavigator();
+function CalendarStackScreen() {
+  return (
+    <CalendarStack.Navigator>
+      <CalendarStack.Screen name='Calendar' component={Calendar} />
+    </CalendarStack.Navigator>
+  );
+}
+
 //dont change this
 const NavigationPageStack = createStackNavigator();
 function NavigationPageStackScreen() {
@@ -53,6 +63,15 @@ function NavigationPageStackScreen() {
   );
 }
 
+// function Calendar() {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name="Calendar" component={Calendar} />
+//       {/* <Tab.Screen name="Messages" component={Messages} /> */}
+//     </Tab.Navigator>
+//   );
+// }
+
 
 
 const Tab = createBottomTabNavigator();
@@ -63,7 +82,7 @@ export default function App() {
         <Tab.Screen name='Home' component={HomeStackScreen} />
         <Tab.Screen name='Audio' component={AudioPlayerStackScreen} />
         <Tab.Screen name='QrScan' component={QrScanStackScreen} />
-        <Tab.Screen name='More' component={NavigationPageStackScreen} />
+        <Tab.Screen name='Calendar' component={CalendarStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
