@@ -16,6 +16,7 @@ This is the repository for a mobile app by the [Chabot Space &amp; Science Cente
 * Robbie Sylvia  
 * theobakshi12  
 * timzhou16US  
+* Katrina Lee  
 <br>
 
 ### **Contact**  
