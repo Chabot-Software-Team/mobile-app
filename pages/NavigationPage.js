@@ -9,26 +9,30 @@ export default function NavigationPage() {
   const buttons = [
     {
       name: "Movies",
-      iconName: "videocam-outline"
+      iconName: "videocam-outline",
+      file: "./Calendar.js"
     },
     {
       name: "Calendar Events",
-      iconName: "calendar-outline"
+      iconName: "calendar-outline",
+      file: "./Calendar.js"
     },
     {
       name: "Weather",
-      iconName: "cloud-outline"
+      iconName: "cloud-outline",
+      file: "./Calendar.js"
     },
     {
       name: "Articles",
-      iconName: "newspaper-outline"
+      iconName: "newspaper-outline",
+      file: "./Calendar.js"
     }
   ];
 
   return (
     <View style={styles.container}>
       {buttons.map((button) => (
-        <TouchableOpacity style = {styles.button} onPress={() => navigation.navigate('Movies')}>
+        <TouchableOpacity style = {styles.button} onPress={() => navigation.navigate(button.file)}>
         <Text style={styles.buttonText}>{button.name}</Text>
         <Ionicons style={styles.icon} name={button.iconName} size={20} />
         </TouchableOpacity>

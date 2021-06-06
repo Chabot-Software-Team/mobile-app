@@ -4,7 +4,7 @@
 # Overview
 
 ### **Description**
-This is the repository for a mobile app by the [Chabot Space &amp; Science Center](https://chabotspace.org/) Galaxy Explorer Software Engineering Team. Created using [Native Script.](https://nativescript.org/)  
+This is the repository for a mobile app by the [Chabot Space &amp; Science Center](https://chabotspace.org/) Galaxy Explorer Software Engineering Team. Created using [React Native.](https://reactnative.dev/)  
 <br>  
 ### **Members**
 * aidansunbury
@@ -16,6 +16,7 @@ This is the repository for a mobile app by the [Chabot Space &amp; Science Cente
 * Robbie Sylvia  
 * theobakshi12  
 * timzhou16US  
+* Katrina Lee  
 <br>
 
 ### **Contact**  
