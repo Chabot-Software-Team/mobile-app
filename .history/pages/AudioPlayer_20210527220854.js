@@ -59,7 +59,7 @@ export default function AudioPlayer() {
   }
 
   async function loadAudio() {
-    await sound.loadAsync(playlist[0].source);
+    await sound.loadAsync(playlist[index].source);
     console.log("Audio loaded");
     setPlaybackStatus(sound.getStatusAsync());
     
@@ -79,15 +79,15 @@ export default function AudioPlayer() {
   async function handleNext(){
     alert("next");
     await sound.unloadAsync();
-    /*
+    
     if (index < maxIndex){
       index++;
     }
     else {
       index = 0;
     }
-    */
-    await sound.loadAsync(playlist[1].source);
+
+    await sound.loadAsync(require("../assets/audio/song4.mp3"));
     
     await sound.playAsync();
     setPlayPauseIcon('pause-circle-outline');

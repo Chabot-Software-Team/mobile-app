@@ -3,14 +3,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet, Text, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 
 //page imports
 import Home from "../pages/Home";
 import AudioPlayer from "../pages/AudioPlayer";
 import NavigationPage from "../pages/NavigationPage";
 import QrScan from "../pages/QrScan";
-import Calendar from "../pages/Calendar.js";
 
 import Page1 from "../pages/articles/Page1";
 
@@ -42,15 +40,6 @@ function QrScanStackScreen() {
   );
 }
 
-const CalendarStack = createStackNavigator();
-function CalendarStackScreen() {
-  return (
-    <CalendarStack.Navigator>
-      <CalendarStack.Screen name='Calendar' component={Calendar} />
-    </CalendarStack.Navigator>
-  );
-}
-
 //dont change this
 const NavigationPageStack = createStackNavigator();
 function NavigationPageStackScreen() {
@@ -64,15 +53,6 @@ function NavigationPageStackScreen() {
   );
 }
 
-// function Calendar() {
-//   return (
-//     <Tab.Navigator>
-//       <Tab.Screen name="Calendar" component={Calendar} />
-//       {/* <Tab.Screen name="Messages" component={Messages} /> */}
-//     </Tab.Navigator>
-//   );
-// }
-
 
 
 const Tab = createBottomTabNavigator();
@@ -80,10 +60,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name='Home' component={HomeStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='home-outline' size={20} />)}}/>
-        <Tab.Screen name='Audio' component={AudioPlayerStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='headset-outline' size={20} />)}}/>
-        <Tab.Screen name='QrScan' component={QrScanStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='qr-code-outline' size={20} />)}}/>
-        <Tab.Screen name='More' component={NavigationPageStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='add-outline' size={20} />)}}/>
+        <Tab.Screen name='Home' component={HomeStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='home-outline' size={10} />)}}/>
+        <Tab.Screen name='Audio' component={AudioPlayerStackScreen} />
+        <Tab.Screen name='QrScan' component={QrScanStackScreen} />
+        <Tab.Screen name='More' component={NavigationPageStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

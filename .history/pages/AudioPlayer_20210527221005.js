@@ -87,7 +87,7 @@ export default function AudioPlayer() {
       index = 0;
     }
     */
-    await sound.loadAsync(playlist[1].source);
+    await sound.loadAsync(playlist[index+1].source);
     
     await sound.playAsync();
     setPlayPauseIcon('pause-circle-outline');

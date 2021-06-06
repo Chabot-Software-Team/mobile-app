@@ -35,7 +35,6 @@ export default function AudioPlayer() {
   const [playPauseIcon, setPlayPauseIcon] = useState("play-circle-outline");
 
   let index = 0;
-  let maxIndex = 3;
   
 
 
@@ -59,7 +58,7 @@ export default function AudioPlayer() {
   }
 
   async function loadAudio() {
-    await sound.loadAsync(playlist[0].source);
+    await sound.loadAsync(playlist[index].source);
     console.log("Audio loaded");
     setPlaybackStatus(sound.getStatusAsync());
     
@@ -77,40 +76,9 @@ export default function AudioPlayer() {
   };
 
   async function handleNext(){
-    alert("next");
     await sound.unloadAsync();
-    /*
-    if (index < maxIndex){
-      index++;
-    }
-    else {
-      index = 0;
-    }
-    */
-    await sound.loadAsync(playlist[1].source);
-    
-    await sound.playAsync();
-    setPlayPauseIcon('pause-circle-outline');
-    setIsPlaying(true);
-    alert("complete")
-  }
-
-  async function handleBack(){
-    await sound.unloadAsync();
-    
-    if (index == 0){
-      index = maxIndex;
-    }
-    else {
-      index--;
-    }
-
-    await sound.loadAsync(playlist[index].source);
-
-    setPlaybackStatus(sound.getStatusAsync());
-    await sound.playAsync();
-        setPlayPauseIcon('pause-circle-outline');
-        setIsPlaying(true); 
+    await sound.loadAsync(require("../assets/audio/show.mp3"));
+    setPlaybackStatus(sound.getStatusAsync()); 
   }
 
   
@@ -212,7 +180,7 @@ export default function AudioPlayer() {
       <View style={styles.iconView}>
         <TouchableOpacity
           onPress={() => {
-            handleBack()
+            goToTime(50000);
           }}
         >
           <Ionicons name='play-skip-back-outline' size={windowWidth / 6} />
