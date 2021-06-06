@@ -15,10 +15,6 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { Audio } from "expo-av";
 
-import {PlaylistItem, playlist} from "./Songs";
-
-
-
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
@@ -31,13 +27,8 @@ export default function AudioPlayer() {
   
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackStatus, setPlaybackStatus] = useState();
-  const [sliderValue, setSliderValue] = useState(50);
+  const [sliderValue, setSliderValue] = useState(0);
   const [playPauseIcon, setPlayPauseIcon] = useState("play-circle-outline");
-
-  let index = 0;
-  let maxIndex = 3;
-  
-
 
 //sound.setPositionAsync(time in miliseconds)
 
@@ -59,58 +50,15 @@ export default function AudioPlayer() {
   }
 
   async function loadAudio() {
-    await sound.loadAsync(playlist[0].source);
-    console.log("Audio loaded");
+    await sound.loadAsync(require("../assets/audio/Roar.mp3"));
+    alert(renderDuration());
     setPlaybackStatus(sound.getStatusAsync());
-    
-    
   }
-
-  async function goToTime (time){
-    if (isPlaying == true){
-      console.log("moving to time")
-      sound.playFromPositionAsync(time);
-    }
-    else {
-      console.log("goToTime failed")
-    }
-  };
 
   async function handleNext(){
-    alert("next");
     await sound.unloadAsync();
-    /*
-    if (index < maxIndex){
-      index++;
-    }
-    else {
-      index = 0;
-    }
-    */
-    await sound.loadAsync(playlist[1].source);
-    
-    await sound.playAsync();
-    setPlayPauseIcon('pause-circle-outline');
-    setIsPlaying(true);
-    alert("complete")
-  }
-
-  async function handleBack(){
-    await sound.unloadAsync();
-    
-    if (index == 0){
-      index = maxIndex;
-    }
-    else {
-      index--;
-    }
-
-    await sound.loadAsync(playlist[index].source);
-
-    setPlaybackStatus(sound.getStatusAsync());
-    await sound.playAsync();
-        setPlayPauseIcon('pause-circle-outline');
-        setIsPlaying(true); 
+    await sound.loadAsync((require("../assets/audio/show.mp3")));
+    setPlaybackStatus(sound.getStatusAsync()); 
   }
 
   
@@ -128,7 +76,6 @@ export default function AudioPlayer() {
         await sound.playAsync();
         setPlayPauseIcon('pause-circle-outline');
         setIsPlaying(true);
-        
       }
     } catch (e) {
       console.log(e);
@@ -182,7 +129,7 @@ export default function AudioPlayer() {
           source={require("../assets/images/hairGod.jpg")}
         ></Image>
         <Text style={{ alignSelf: "center", justifyContent: "center" }}>
-          Audio Branch {sliderValue} {sound.positionMillis} 
+          Audio Branch
         </Text>
       </View>
       <View
@@ -195,24 +142,24 @@ export default function AudioPlayer() {
         <View style={{ flex: 1 }}></View>
         <View style={{ flex: 20 }}>
 
-          <Slider value = {sliderValue} onValueChange = {(sliderValue) =>setSliderValue(sliderValue)} minimumValue={0} maximumValue={100} step = {1} thumbTintColor='#04A5BA' />
+          <Slider onValueChange = {() =>setSliderValue(val)}minimumValue={0} maximumValue={1} thumbTintColor='#04A5BA' />
 
         </View>
         <View style={{ flex: 1 }}></View>
       </View>
       <View style={{ flex: 0.5, flexDirection: "row" }}>
         <View style={{ flex: 1 }}>
-          <Text style={{ paddingLeft: 20 }}>{"start"}</Text>
+          <Text style={{ paddingLeft: 20 }}>{renderDuration()}</Text>
         </View>
         <View style={{ flex: 1, alignItems: "flex-end" }}>
-          <Text style={{ paddingRight: 20 }}>{"end"}</Text>
+          <Text style={{ paddingRight: 20 }}>{renderPosition()}</Text>
         </View>
       </View>
 
       <View style={styles.iconView}>
         <TouchableOpacity
           onPress={() => {
-            handleBack()
+            alert("hello");
           }}
         >
           <Ionicons name='play-skip-back-outline' size={windowWidth / 6} />
@@ -223,7 +170,7 @@ export default function AudioPlayer() {
         <TouchableOpacity onPress={() => handlePausePress()}>
           <Ionicons name= {playPauseIcon} size={windowWidth / 6} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => alert(source)}>
+        <TouchableOpacity onPress={() => handlePausePress()}>
           <Ionicons name='play-forward-outline' size={windowWidth / 6} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleNext()}>

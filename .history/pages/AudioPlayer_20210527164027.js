@@ -15,10 +15,6 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { Audio } from "expo-av";
 
-import {PlaylistItem, playlist} from "./Songs";
-
-
-
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
@@ -33,11 +29,6 @@ export default function AudioPlayer() {
   const [playbackStatus, setPlaybackStatus] = useState();
   const [sliderValue, setSliderValue] = useState(50);
   const [playPauseIcon, setPlayPauseIcon] = useState("play-circle-outline");
-
-  let index = 0;
-  let maxIndex = 3;
-  
-
 
 //sound.setPositionAsync(time in miliseconds)
 
@@ -59,11 +50,9 @@ export default function AudioPlayer() {
   }
 
   async function loadAudio() {
-    await sound.loadAsync(playlist[0].source);
+    await sound.loadAsync(require("../assets/audio/Roar.mp3"));
     console.log("Audio loaded");
     setPlaybackStatus(sound.getStatusAsync());
-    
-    
   }
 
   async function goToTime (time){
@@ -77,40 +66,9 @@ export default function AudioPlayer() {
   };
 
   async function handleNext(){
-    alert("next");
     await sound.unloadAsync();
-    /*
-    if (index < maxIndex){
-      index++;
-    }
-    else {
-      index = 0;
-    }
-    */
-    await sound.loadAsync(playlist[1].source);
-    
-    await sound.playAsync();
-    setPlayPauseIcon('pause-circle-outline');
-    setIsPlaying(true);
-    alert("complete")
-  }
-
-  async function handleBack(){
-    await sound.unloadAsync();
-    
-    if (index == 0){
-      index = maxIndex;
-    }
-    else {
-      index--;
-    }
-
-    await sound.loadAsync(playlist[index].source);
-
-    setPlaybackStatus(sound.getStatusAsync());
-    await sound.playAsync();
-        setPlayPauseIcon('pause-circle-outline');
-        setIsPlaying(true); 
+    await sound.loadAsync((require("../assets/audio/show.mp3")));
+    setPlaybackStatus(sound.getStatusAsync()); 
   }
 
   
@@ -128,7 +86,6 @@ export default function AudioPlayer() {
         await sound.playAsync();
         setPlayPauseIcon('pause-circle-outline');
         setIsPlaying(true);
-        
       }
     } catch (e) {
       console.log(e);
@@ -182,7 +139,7 @@ export default function AudioPlayer() {
           source={require("../assets/images/hairGod.jpg")}
         ></Image>
         <Text style={{ alignSelf: "center", justifyContent: "center" }}>
-          Audio Branch {sliderValue} {sound.positionMillis} 
+          Audio Branch {sliderValue}
         </Text>
       </View>
       <View
@@ -212,7 +169,7 @@ export default function AudioPlayer() {
       <View style={styles.iconView}>
         <TouchableOpacity
           onPress={() => {
-            handleBack()
+            goToTime(50000);
           }}
         >
           <Ionicons name='play-skip-back-outline' size={windowWidth / 6} />
@@ -223,7 +180,7 @@ export default function AudioPlayer() {
         <TouchableOpacity onPress={() => handlePausePress()}>
           <Ionicons name= {playPauseIcon} size={windowWidth / 6} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => alert(source)}>
+        <TouchableOpacity onPress={() => handlePausePress()}>
           <Ionicons name='play-forward-outline' size={windowWidth / 6} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleNext()}>

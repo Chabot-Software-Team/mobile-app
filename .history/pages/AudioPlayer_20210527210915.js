@@ -15,9 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { Audio } from "expo-av";
 
-import {PlaylistItem, playlist} from "./Songs";
-
-
+import {PlaylistItem, playlist} from "Songs.js"
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -34,10 +32,7 @@ export default function AudioPlayer() {
   const [sliderValue, setSliderValue] = useState(50);
   const [playPauseIcon, setPlayPauseIcon] = useState("play-circle-outline");
 
-  let index = 0;
-  let maxIndex = 3;
-  
-
+  const source = "../assets/audio/Roar.mp3";
 
 //sound.setPositionAsync(time in miliseconds)
 
@@ -59,11 +54,10 @@ export default function AudioPlayer() {
   }
 
   async function loadAudio() {
-    await sound.loadAsync(playlist[0].source);
+    await sound.loadAsync(require(source));
     console.log("Audio loaded");
     setPlaybackStatus(sound.getStatusAsync());
-    
-    
+    alert(playbackStatus.isLoaded);
   }
 
   async function goToTime (time){
@@ -77,40 +71,9 @@ export default function AudioPlayer() {
   };
 
   async function handleNext(){
-    alert("next");
     await sound.unloadAsync();
-    /*
-    if (index < maxIndex){
-      index++;
-    }
-    else {
-      index = 0;
-    }
-    */
-    await sound.loadAsync(playlist[1].source);
-    
-    await sound.playAsync();
-    setPlayPauseIcon('pause-circle-outline');
-    setIsPlaying(true);
-    alert("complete")
-  }
-
-  async function handleBack(){
-    await sound.unloadAsync();
-    
-    if (index == 0){
-      index = maxIndex;
-    }
-    else {
-      index--;
-    }
-
-    await sound.loadAsync(playlist[index].source);
-
-    setPlaybackStatus(sound.getStatusAsync());
-    await sound.playAsync();
-        setPlayPauseIcon('pause-circle-outline');
-        setIsPlaying(true); 
+    await sound.loadAsync((require("../assets/audio/show.mp3")));
+    setPlaybackStatus(sound.getStatusAsync()); 
   }
 
   
@@ -128,7 +91,7 @@ export default function AudioPlayer() {
         await sound.playAsync();
         setPlayPauseIcon('pause-circle-outline');
         setIsPlaying(true);
-        
+        alert(playbackStatus.positionMillis);
       }
     } catch (e) {
       console.log(e);
@@ -212,7 +175,7 @@ export default function AudioPlayer() {
       <View style={styles.iconView}>
         <TouchableOpacity
           onPress={() => {
-            handleBack()
+            goToTime(50000);
           }}
         >
           <Ionicons name='play-skip-back-outline' size={windowWidth / 6} />
@@ -223,7 +186,7 @@ export default function AudioPlayer() {
         <TouchableOpacity onPress={() => handlePausePress()}>
           <Ionicons name= {playPauseIcon} size={windowWidth / 6} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => alert(source)}>
+        <TouchableOpacity onPress={() => handlePausePress()}>
           <Ionicons name='play-forward-outline' size={windowWidth / 6} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleNext()}>
