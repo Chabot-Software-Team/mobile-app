@@ -10,6 +10,7 @@ import Home from "../pages/Home";
 import AudioPlayer from "../pages/AudioPlayer";
 import NavigationPage from "../pages/NavigationPage";
 import QrScan from "../pages/QrScan";
+import Calendar from "../pages/Calendar.js";
 
 import Page1 from "../pages/articles/Page1";
 import Page2 from "../pages/articles/Page2";
@@ -43,6 +44,15 @@ function QrScanStackScreen() {
   );
 }
 
+const CalendarStack = createStackNavigator();
+function CalendarStackScreen() {
+  return (
+    <CalendarStack.Navigator>
+      <CalendarStack.Screen name='Calendar' component={Calendar} />
+    </CalendarStack.Navigator>
+  );
+}
+
 //dont change this
 const NavigationPageStack = createStackNavigator();
 function NavigationPageStackScreen() {
@@ -55,6 +65,15 @@ function NavigationPageStackScreen() {
     </NavigationPageStack.Navigator>
   );
 }
+
+// function Calendar() {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name="Calendar" component={Calendar} />
+//       {/* <Tab.Screen name="Messages" component={Messages} /> */}
+//     </Tab.Navigator>
+//   );
+// }
 
 
 
