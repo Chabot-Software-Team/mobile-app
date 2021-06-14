@@ -30,13 +30,12 @@ const styles = StyleSheet.create({
 export default function QrScan() {
   const navigation = useNavigation();
 
-  const [text, setText] = useState("000");
+  const [text, setText] = useState("");
   function navigate(text) {
-    console.log(text);
     if (text == "111") {
       navigation.navigate("Page1");
     } 
-    else if (text == "112"){
+    else if (text = "112"){
       navigation.navigate("Page2");
     }
     else {

@@ -12,16 +12,18 @@ import { useNavigation } from "@react-navigation/native";
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "#2ed0cf",
-    padding: "10px 30px",
+    padding: 10,
   },
   text: {
     color: "white",
     textTransform: "uppercase",
-    fontWeight: "400",
+
     fontSize: 18,
     letterSpacing: 1.5,
   },
-  input: {},
+  input: {
+    padding: 10,
+  },
   container: {},
 });
 
@@ -31,8 +33,12 @@ export default function QrScan() {
   const [text, setText] = useState("");
   function navigate(text) {
     if (text == "111") {
-      navigation.navigate("../pages/articles/Page1");
-    } else {
+      navigation.navigate("Page1");
+    } 
+    else if (text = "112"){
+      navigation.navigate("Page2");
+    }
+    else {
       alert("Invalid code");
     }
   }
@@ -49,7 +55,7 @@ export default function QrScan() {
       ></TextInput>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate("../pages/articles/Page1")}
+        onPress={() => navigate(text)}
       >
         <Text style={styles.text}>Go To Page</Text>
       </TouchableOpacity>

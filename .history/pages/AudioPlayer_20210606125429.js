@@ -60,7 +60,7 @@ export default function AudioPlayer() {
 
   async function loadAudio() {
     await sound.loadAsync(playlist[0].source);
-    console.log("Audio loaded " + (index % 4));
+    console.log("Audio loaded");
     setPlaybackStatus(sound.getStatusAsync());
     
     
@@ -77,7 +77,7 @@ export default function AudioPlayer() {
   };
 
   async function handleNext(){
-    console.log("next " + (index % 4));
+    alert("next" + index);
     await sound.unloadAsync();
     
     index++;
@@ -91,7 +91,7 @@ export default function AudioPlayer() {
   }
 
   async function handleBack(){
-    console.log("back" + (index % 4));
+    alert("back" + index);
     await sound.unloadAsync();
     
     index--;

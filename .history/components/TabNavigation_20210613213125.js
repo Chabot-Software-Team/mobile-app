@@ -12,7 +12,6 @@ import NavigationPage from "../pages/NavigationPage";
 import QrScan from "../pages/QrScan";
 
 import Page1 from "../pages/articles/Page1";
-import Page2 from "../pages/articles/Page2";
 
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
