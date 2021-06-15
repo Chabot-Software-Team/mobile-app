@@ -38,6 +38,7 @@ export default function QrScan() {
   
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const [data, setData] = useState();
   const [text, setText] = useState("000");
 
   useEffect(() => {
@@ -50,7 +51,7 @@ export default function QrScan() {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     navigate(data);
-    
+    setData(data);
   };
 
   if (hasPermission === null) {
@@ -71,8 +72,12 @@ export default function QrScan() {
     else if (text == "112"){
       navigation.navigate("Page2");
     }
-    
-    setScanned(false);
+    else if (text == "113"){
+      navigation.navigate("Scanner");
+    }
+    else {
+      alert("Invalid code");
+    }
     setText("000");
   }
   return (
@@ -83,8 +88,9 @@ export default function QrScan() {
           style={StyleSheet.absoluteFillObject}
         />
         {scanned && <TouchableOpacity title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+        <Text>{data}</Text>
       </View>
-      <View flex = {0.25}></View>
+
       <View flex = {0.25}>
       <TextInput
         style={{

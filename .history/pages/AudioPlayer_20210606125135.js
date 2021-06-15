@@ -60,7 +60,7 @@ export default function AudioPlayer() {
 
   async function loadAudio() {
     await sound.loadAsync(playlist[0].source);
-    console.log("Audio loaded " + (index % 4));
+    console.log("Audio loaded");
     setPlaybackStatus(sound.getStatusAsync());
     
     
@@ -77,12 +77,17 @@ export default function AudioPlayer() {
   };
 
   async function handleNext(){
-    console.log("next " + (index % 4));
+    alert("next" + index);
     await sound.unloadAsync();
     
-    index++;
+    if (index < maxIndex){
+      index++;
+    }
+    else {
+      index = 0;
+    }
     
-    await sound.loadAsync(playlist[index%4].source);
+    await sound.loadAsync(playlist[index].source);
     
     await sound.playAsync();
     setPlayPauseIcon('pause-circle-outline');
@@ -91,12 +96,17 @@ export default function AudioPlayer() {
   }
 
   async function handleBack(){
-    console.log("back" + (index % 4));
+    alert("back" + index);
     await sound.unloadAsync();
     
-    index--;
+    if (index == 0){
+      index = maxIndex;
+    }
+    else {
+      index--;
+    }
 
-    await sound.loadAsync(playlist[index%4].source);
+    await sound.loadAsync(playlist[index].source);
 
     setPlaybackStatus(sound.getStatusAsync());
     await sound.playAsync();

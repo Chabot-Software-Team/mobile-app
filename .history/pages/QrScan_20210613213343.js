@@ -30,14 +30,18 @@ const styles = StyleSheet.create({
 export default function QrScan() {
   const navigation = useNavigation();
 
-  const [text, setText] = useState("");
+  const [text, setText] = useState("000");
   function navigate(text) {
     if (text == "111") {
-      alert("Something is wrong");
-      navigation.navigate("../pages/articles/Page1");
-    } else {
+      navigation.navigate("Page1");
+    } 
+    else if (text = "112"){
+      navigation.navigate("Page2");
+    }
+    else {
       alert("Invalid code");
     }
+    setText("000");
   }
   return (
     <View>
@@ -52,7 +56,7 @@ export default function QrScan() {
       ></TextInput>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate("../pages/articles/Page1")}
+        onPress={() => navigate(text)}
       >
         <Text style={styles.text}>Go To Page</Text>
       </TouchableOpacity>

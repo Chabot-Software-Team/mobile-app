@@ -60,7 +60,7 @@ export default function AudioPlayer() {
 
   async function loadAudio() {
     await sound.loadAsync(playlist[0].source);
-    console.log("Audio loaded " + (index % 4));
+    console.log("Audio loaded");
     setPlaybackStatus(sound.getStatusAsync());
     
     
@@ -77,26 +77,35 @@ export default function AudioPlayer() {
   };
 
   async function handleNext(){
-    console.log("next " + (index % 4));
+    alert("next");
     await sound.unloadAsync();
-    
-    index++;
-    
-    await sound.loadAsync(playlist[index%4].source);
+    /*
+    if (index < maxIndex){
+      index++;
+    }
+    else {
+      index = 0;
+    }
+    */
+    await sound.loadAsync(playlist[1].source);
     
     await sound.playAsync();
     setPlayPauseIcon('pause-circle-outline');
     setIsPlaying(true);
-    
+    alert("complete")
   }
 
   async function handleBack(){
-    console.log("back" + (index % 4));
     await sound.unloadAsync();
     
-    index--;
+    if (index == 0){
+      index = maxIndex;
+    }
+    else {
+      index--;
+    }
 
-    await sound.loadAsync(playlist[index%4].source);
+    await sound.loadAsync(playlist[index].source);
 
     setPlaybackStatus(sound.getStatusAsync());
     await sound.playAsync();
@@ -199,7 +208,11 @@ export default function AudioPlayer() {
       </View>
 
       <View style={styles.iconView}>
-        <TouchableOpacity onPress={() => handleBack()} >
+        <TouchableOpacity
+          onPress={() => {
+            handleBack()
+          }}
+        >
           <Ionicons name='play-skip-back-outline' size={windowWidth / 6} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handlePausePress()}>
@@ -208,7 +221,7 @@ export default function AudioPlayer() {
         <TouchableOpacity onPress={() => handlePausePress()}>
           <Ionicons name= {playPauseIcon} size={windowWidth / 6} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => handlePausePress()}>
+        <TouchableOpacity onPress={() => alert(source)}>
           <Ionicons name='play-forward-outline' size={windowWidth / 6} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleNext()}>
