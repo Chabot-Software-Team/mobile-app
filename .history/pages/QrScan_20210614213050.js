@@ -66,13 +66,17 @@ export default function QrScan() {
   function navigate(text) {
     console.log(text);
     if (text == "111") {
+      setScanned(false);
       navigation.navigate("Page1");
     } 
     else if (text == "112"){
+      
       navigation.navigate("Page2");
+      setScanned(false);
     }
-    
-    setScanned(false);
+    else {
+      alert("Invalid code");
+    }
     setText("000");
   }
   return (

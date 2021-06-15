@@ -69,9 +69,10 @@ export default function QrScan() {
       navigation.navigate("Page1");
     } 
     else if (text == "112"){
+      
       navigation.navigate("Page2");
+      
     }
-    
     setScanned(false);
     setText("000");
   }

@@ -11,7 +11,7 @@ import AudioPlayer from "../pages/AudioPlayer";
 import NavigationPage from "../pages/NavigationPage";
 import QrScan from "../pages/QrScan";
 import Calendar from "../pages/Calendar.js";
-
+import Scanner from "../pages/Scanner.js";
 
 
 import Page1 from "../pages/articles/Page1";
@@ -43,7 +43,7 @@ function QrScanStackScreen() {
       <QRScanStack.Screen name='QrScan' component={QrScan} />
       <QRScanStack.Screen name='Page1' component={Page1} />
       <QRScanStack.Screen name='Page2' component={Page2} />
-      
+      <QRScanStack.Screen name='Scanner' component={Scanner} />
 
     </QRScanStack.Navigator>
   );
