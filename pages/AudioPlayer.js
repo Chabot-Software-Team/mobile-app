@@ -1,3 +1,200 @@
+import React, {useEffect, useState} from 'react';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  Dimensions,
+  TouchableOpacity,
+  Image } from 'react-native';
+  
+import { Audio } from 'expo-av';
+
+import { Ionicons } from "@expo/vector-icons";
+
+// soundObject.loadAsync(source, initialStatus = {}, downloadFirst = true)
+// soundObject.unloadAsync()
+// soundObject.getStatusAsync()
+// soundObject.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate)
+// soundObject.setStatusAsync(statusToSet)
+// soundObject.playAsync()
+// soundObject.replayAsync()
+// soundObject.pauseAsync()
+// soundObject.stopAsync()
+// soundObject.setPositionAsync(millis)
+// soundObject.setRateAsync(value, shouldCorrectPitch, pitchCorrectionQuality)
+// soundObject.setVolumeAsync(value)
+// soundObject.setIsMutedAsync(value)
+// soundObject.setIsLoopingAsync(value)
+// soundObject.setProgressUpdateIntervalAsync(millis)
+
+
+export default function App() {
+  const [sound, setSound] = useState();
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [status, setStatus] = useState();
+
+  const windowWidth = Dimensions.get("window").width;
+  const windowHeight = Dimensions.get("window").height;
+
+  
+
+  const handlePress = () =>  {
+    if(status.isPlaying){
+      pauseSound()
+    }
+    else{
+      playSound()
+    }
+  }
+
+  useEffect(() => {
+
+    const loadSound = async () =>{
+      const playbackObject = new Audio.Sound();
+      await playbackObject.loadAsync(
+        require('../assets/audio/song1.mp3'),
+      )
+    //   const { sound: playbackObject } = await Audio.Sound.createAsync(
+    //     require('../assets/audio/song1.mp3'),
+    //     {shouldPlay: false}
+    //  );
+      
+    reloadStatus()
+
+     setSound(playbackObject);
+    }
+    loadSound()
+  }, [])
+
+  // useEffect(()=>{
+  //   reloadStatus()
+  // }, [sound])
+
+
+  const reloadStatus = async () =>{
+    let AVPlaybackStatus = await sound.getStatusAsync();
+    console.log(AVPlaybackStatus)
+    setStatus(AVPlaybackStatus)
+    }
+
+  async function playSound() {
+    console.log('Loading Sound');
+    console.log(sound)
+    console.log('Playing Sound');
+    await sound.playAsync(); 
+    reloadStatus()
+    // setIsPlaying(true)
+    // console.log(sound.isPlaying);
+  }
+  
+  async function pauseSound(){
+    await sound.pauseAsync();
+    reloadStatus()
+    // setIsPlaying(false)
+  };
+
+  
+  // React.useEffect(() => {
+  //   return sound
+  //     ? () => {
+  //         console.log('Unloading Sound');
+  //         sound.unloadAsync(); }
+  //     : undefined;
+  // }, [sound]);
+
+
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={{ flex: 0.5 }}></View>
+      <View style={{ flex: 5, justifyContent: "center" }}>
+        <Image
+          style={styles.imagePosition}
+          source={require("../assets/images/hairGod.jpg")}
+        ></Image>
+        <Text style={{ alignSelf: "center", justifyContent: "center" }}>
+          Audio Branch
+        </Text>
+      </View>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <View style={{ flex: 1 }}></View>
+        <View style={{ flex: 20 }}>
+          {/*<Slider value = {sliderValue} onValueChange = {(sliderValue) =>setSliderValue(sliderValue)} minimumValue={0} maximumValue={100} step = {1} thumbTintColor='#04A5BA' />*/}
+        </View>
+        <View style={{ flex: 1 }}></View>
+      </View>
+      <View style={{ flex: 0.5, flexDirection: "row" }}>
+        <View style={{ flex: 1 }}>
+          <Text style={{ paddingLeft: 20 }}>{"start"}</Text>
+        </View>
+        <View style={{ flex: 1, alignItems: "flex-end" }}>
+          <Text style={{ paddingRight: 20 }}>{"end"}</Text>
+        </View>
+      </View>
+
+      <View style={styles.iconView}>
+        <TouchableOpacity  >
+          <Ionicons name='play-skip-back-outline'  />
+        </TouchableOpacity>
+        <TouchableOpacity >
+          <Ionicons name='play-back-outline' />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handlePress()}>
+          <Ionicons name= "pause-circle-outline" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Ionicons name='play-forward-outline'  />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Ionicons name='play-skip-forward-outline'  />
+        </TouchableOpacity>
+      </View>
+
+       <View style={{ flex: 1, flexDirection: "row" }}>
+        <View style={{ flex: 1 }}>
+          <TouchableOpacity
+            style={{ paddingLeft: 20 }}
+            onPress={() => alert("hello")}
+          >
+            <Ionicons name='caret-up-circle-outline'  />
+          </TouchableOpacity>
+        </View>
+        <View style={{ flex: 1, alignItems: "flex-end" }}>
+          <Text style={{ paddingRight: 20 }}>1x</Text>
+        </View>
+      </View>
+    </View> 
+  );
+}
+
+
+const styles = StyleSheet.create({
+  imagePosition: {
+    alignSelf: "center",
+  },
+  iconView: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+
+  toggleButton: {
+    flex: 1,
+    backgroundColor: "#04A5BA",
+    padding: 20,
+    alignSelf: "center",
+    justifyContent: "flex-end",
+  },
+});
+
+/*
+
 import React from "react";
 import { useState } from "react";
 import {
@@ -16,6 +213,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { Audio } from "expo-av";
 
 import {PlaylistItem, playlist} from "./Songs";
+
+
+
+
 
 
 
@@ -185,8 +386,7 @@ export default function AudioPlayer() {
       >
         <View style={{ flex: 1 }}></View>
         <View style={{ flex: 20 }}>
-          <Text style={{ paddingRight: 20 }}> </Text>
-          {/*<Slider value = {sliderValue} onValueChange = {(sliderValue) =>setSliderValue(sliderValue)} minimumValue={0} maximumValue={100} step = {1} thumbTintColor='#04A5BA' />*/}
+          {/*<Slider value = {sliderValue} onValueChange = {(sliderValue) =>setSliderValue(sliderValue)} minimumValue={0} maximumValue={100} step = {1} thumbTintColor='#04A5BA' />}
         </View>
         <View style={{ flex: 1 }}></View>
       </View>
@@ -233,24 +433,4 @@ export default function AudioPlayer() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  imagePosition: {
-    width: windowWidth / 1.25,
-    height: windowWidth / 1.25,
-    alignSelf: "center",
-  },
-  iconView: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-
-  toggleButton: {
-    flex: 1,
-    backgroundColor: "#04A5BA",
-    padding: 20,
-    alignSelf: "center",
-    justifyContent: "flex-end",
-  },
-});
+*/
