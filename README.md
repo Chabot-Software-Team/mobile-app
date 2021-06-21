@@ -19,6 +19,13 @@ This is the repository for a mobile app by the [Chabot Space &amp; Science Cente
 * Katrina Lee  
 <br>
 
+### **Latest Screenshots**  
+
+<img src="./readme-images/6-19-21.png" width="50%">  
+<br>  
+<br>  
+
+
 ### **Contact**  
 [Discord Server](https://discord.gg/F35R2tV8Eu)  
 <br>
