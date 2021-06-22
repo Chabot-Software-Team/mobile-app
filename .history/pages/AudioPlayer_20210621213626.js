@@ -12,8 +12,6 @@ import { Audio } from 'expo-av';
 
 import { Ionicons } from "@expo/vector-icons";
 
-import {PlaylistItem, playlist} from "./Songs";
-
 // soundObject.loadAsync(source, initialStatus = {}, downloadFirst = true)
 // soundObject.unloadAsync()
 // soundObject.getStatusAsync()
@@ -30,8 +28,6 @@ import {PlaylistItem, playlist} from "./Songs";
 // soundObject.setIsLoopingAsync(value)
 // soundObject.setProgressUpdateIntervalAsync(millis)
 
-//don't move this out of global scope
-let currentIndex = 0;
 
 export default function App() {
   const [sound, setSound] = useState(null); //holds the sound object
@@ -41,8 +37,6 @@ export default function App() {
 
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
-
-  
 
   
   
@@ -61,7 +55,7 @@ export default function App() {
 
   const handlePress = () =>  {
     if (sound == null){
-      loadSound(playlist[currentIndex].getSongSource())
+      loadSound()
       handlePress()
     }
     else {
@@ -76,16 +70,16 @@ export default function App() {
   }
 
   
-  async function loadSound(source, playOnLoad) {
+  async function loadSound() {
     console.log("loadSound called");
 
     const playbackObject = new Audio.Sound();
     
     await playbackObject.loadAsync(
-      source, {shouldPlay: playOnLoad}
+      require('../assets/audio/song1.mp3'), {shouldPlay: false}
     );
 
-    console.log("Sound source loaded " + source)
+    
 
     playbackObject.setOnPlaybackStatusUpdate(onPlaybackStatusUpdateFunc);
 
@@ -109,18 +103,15 @@ export default function App() {
     setStatus(playbackStatus);
     setIsLoaded(true);
     console.log("Playback status updated")
-    if (playbackStatus.didJustFinish == true){
-      skip(1)
-    }
   };
 
   useEffect(() => {
 
 
-    loadSound(playlist[currentIndex].getSongSource(), false)
+    loadSound()
   }, [])
 
-  useEffect(() => {console.log("currentIndex is now " + currentIndex)}, [currentIndex])
+ 
 
 
   const reloadStatus = async () =>{
@@ -166,22 +157,6 @@ export default function App() {
     
   }
 
-  async function skip(tracks){
-    
-    
-
-    await sound.unloadAsync()
-
-    console.log("old index is " + currentIndex)
-
-    currentIndex = (currentIndex + tracks) % playlist.length;
-
-    console.log("new index is " + currentIndex)
-
-    loadSound(playlist[currentIndex].getSongSource(), true)
-
-  }
-
 
   /*
   React.useEffect(() => {
@@ -202,9 +177,9 @@ export default function App() {
           source={require("../assets/images/hairGod.jpg")}
         ></Image>*/}
         <Text style={{ alignSelf: "center", justifyContent: "center" }}>
-          
-          {isLoaded ? playlist[currentIndex].getSongName() : "nothing loaded"}
-          {/* playlist[currentIndex].getSongName() */ }
+          {isLoaded ? millisToTime(status.positionMillis) : "waiting to load"}
+          {"\n"}
+          {isLoaded ? millisToTime(status.durationMillis) : "waiting to load"}
         </Text>
       </View>
       <View
@@ -222,34 +197,28 @@ export default function App() {
       </View>
       <View style={{ flex: 0.5, flexDirection: "row" }}>
         <View style={{ flex: 1 }}>
-          <Text style={{ paddingLeft: 20 }}>{isLoaded ? millisToTime(status.positionMillis) : "waiting to load"}</Text>
+          <Text style={{ paddingLeft: 20 }}>{"start"}</Text>
         </View>
         <View style={{ flex: 1, alignItems: "flex-end" }}>
-          <Text style={{ paddingRight: 20 }}>{isLoaded ? millisToTime(status.durationMillis) : "waiting to load"}</Text>
+          <Text style={{ paddingRight: 20 }}>{"end"}</Text>
         </View>
       </View>
 
       <View style={styles.iconView}>
-        <TouchableOpacity  onPress = {() => skip(-1)}>
-          <Ionicons size={windowWidth / 8} name='play-skip-back-outline'  />
+        <TouchableOpacity  onPress = {() => advance(5)}>
+          <Ionicons name='play-skip-back-outline'  />
         </TouchableOpacity>
-        <TouchableOpacity onPress = {() => advance(-15)}>
-          <Ionicons style={{transform: [{rotateY: '180deg'}]}} size={windowWidth / 8} name='refresh-outline'  />
-        </TouchableOpacity>
-        <TouchableOpacity onPress = {() => speedUp(-0.25)}>
-          <Ionicons size={windowWidth / 8} name='play-back-outline' />
+        <TouchableOpacity >
+          <Ionicons name='play-back-outline' />
         </TouchableOpacity>
         <TouchableOpacity  onPress={() => handlePress()}>
-          <Ionicons size = {windowWidth / 7} name= "pause-circle-outline" />
+          <Ionicons size = {40} name= "pause-circle-outline" />
         </TouchableOpacity>
-        <TouchableOpacity onPress = {() => speedUp(0.25)}> 
-          <Ionicons size={windowWidth / 8} name='play-forward-outline'  />
+        <TouchableOpacity>
+          <Ionicons name='play-forward-outline'  />
         </TouchableOpacity>
-        <TouchableOpacity onPress = {() => advance(15)}>
-          <Ionicons size={windowWidth / 8} name='refresh-outline'  />
-        </TouchableOpacity>
-        <TouchableOpacity onPress = {() => skip(1)}>
-          <Ionicons size={windowWidth / 8} name='play-skip-forward-outline'  />
+        <TouchableOpacity onPress = {() => speedUp(0.25)}>
+          <Ionicons name='play-skip-forward-outline'  />
         </TouchableOpacity>
       </View>
 

@@ -202,9 +202,9 @@ export default function App() {
           source={require("../assets/images/hairGod.jpg")}
         ></Image>*/}
         <Text style={{ alignSelf: "center", justifyContent: "center" }}>
-          
-          {isLoaded ? playlist[currentIndex].getSongName() : "nothing loaded"}
-          {/* playlist[currentIndex].getSongName() */ }
+          {isLoaded ? millisToTime(status.positionMillis) : "waiting to load"}
+          {"\n"}
+          {isLoaded ? millisToTime(status.durationMillis) : "waiting to load"}
         </Text>
       </View>
       <View
@@ -222,10 +222,10 @@ export default function App() {
       </View>
       <View style={{ flex: 0.5, flexDirection: "row" }}>
         <View style={{ flex: 1 }}>
-          <Text style={{ paddingLeft: 20 }}>{isLoaded ? millisToTime(status.positionMillis) : "waiting to load"}</Text>
+          <Text style={{ paddingLeft: 20 }}>{"start"}</Text>
         </View>
         <View style={{ flex: 1, alignItems: "flex-end" }}>
-          <Text style={{ paddingRight: 20 }}>{isLoaded ? millisToTime(status.durationMillis) : "waiting to load"}</Text>
+          <Text style={{ paddingRight: 20 }}>{"end"}</Text>
         </View>
       </View>
 

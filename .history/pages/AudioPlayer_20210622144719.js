@@ -76,13 +76,13 @@ export default function App() {
   }
 
   
-  async function loadSound(source, playOnLoad) {
+  async function loadSound(source) {
     console.log("loadSound called");
 
     const playbackObject = new Audio.Sound();
     
     await playbackObject.loadAsync(
-      source, {shouldPlay: playOnLoad}
+      source, {shouldPlay: false}
     );
 
     console.log("Sound source loaded " + source)
@@ -109,15 +109,12 @@ export default function App() {
     setStatus(playbackStatus);
     setIsLoaded(true);
     console.log("Playback status updated")
-    if (playbackStatus.didJustFinish == true){
-      skip(1)
-    }
   };
 
   useEffect(() => {
 
 
-    loadSound(playlist[currentIndex].getSongSource(), false)
+    loadSound(playlist[currentIndex].getSongSource())
   }, [])
 
   useEffect(() => {console.log("currentIndex is now " + currentIndex)}, [currentIndex])
@@ -178,7 +175,7 @@ export default function App() {
 
     console.log("new index is " + currentIndex)
 
-    loadSound(playlist[currentIndex].getSongSource(), true)
+    loadSound(playlist[currentIndex].getSongSource())
 
   }
 
@@ -202,9 +199,9 @@ export default function App() {
           source={require("../assets/images/hairGod.jpg")}
         ></Image>*/}
         <Text style={{ alignSelf: "center", justifyContent: "center" }}>
-          
-          {isLoaded ? playlist[currentIndex].getSongName() : "nothing loaded"}
-          {/* playlist[currentIndex].getSongName() */ }
+          {isLoaded ? millisToTime(status.positionMillis) : "waiting to load"}
+          {"\n"}
+          {isLoaded ? millisToTime(status.durationMillis) : "waiting to load"}
         </Text>
       </View>
       <View
@@ -222,10 +219,10 @@ export default function App() {
       </View>
       <View style={{ flex: 0.5, flexDirection: "row" }}>
         <View style={{ flex: 1 }}>
-          <Text style={{ paddingLeft: 20 }}>{isLoaded ? millisToTime(status.positionMillis) : "waiting to load"}</Text>
+          <Text style={{ paddingLeft: 20 }}>{"start"}</Text>
         </View>
         <View style={{ flex: 1, alignItems: "flex-end" }}>
-          <Text style={{ paddingRight: 20 }}>{isLoaded ? millisToTime(status.durationMillis) : "waiting to load"}</Text>
+          <Text style={{ paddingRight: 20 }}>{"end"}</Text>
         </View>
       </View>
 

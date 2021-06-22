@@ -203,8 +203,8 @@ export default function App() {
         ></Image>*/}
         <Text style={{ alignSelf: "center", justifyContent: "center" }}>
           
-          {isLoaded ? playlist[currentIndex].getSongName() : "nothing loaded"}
-          {/* playlist[currentIndex].getSongName() */ }
+          {"\n hello \n"}
+          
         </Text>
       </View>
       <View
