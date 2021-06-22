@@ -29,11 +29,10 @@ import { Ionicons } from "@expo/vector-icons";
 // soundObject.setProgressUpdateIntervalAsync(millis)
 
 
-export default function App() {
+export default function App(props) {
   const [sound, setSound] = useState(null); //holds the sound object
   const [isPlaying, setIsPlaying] = useState(false); //allows the handlePress function to know whether to play or pause
   const [status, setStatus] = useState(); //holds the playback status of the sound object
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
@@ -174,7 +173,7 @@ export default function App() {
           source={require("../assets/images/hairGod.jpg")}
         ></Image>*/}
         <Text style={{ alignSelf: "center", justifyContent: "center" }}>
-          {isPlaying ? status.positionMillis : "press start"}
+          {props.status.positionMillis}
         </Text>
       </View>
       <View

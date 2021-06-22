@@ -30,10 +30,9 @@ import { Ionicons } from "@expo/vector-icons";
 
 
 export default function App() {
-  const [sound, setSound] = useState(null); //holds the sound object
-  const [isPlaying, setIsPlaying] = useState(false); //allows the handlePress function to know whether to play or pause
-  const [status, setStatus] = useState(); //holds the playback status of the sound object
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [sound, setSound] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [status, setStatus] = useState();
 
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
@@ -58,8 +57,6 @@ export default function App() {
 
   
   async function loadSound() {
-    console.log("loadSound called");
-
     const playbackObject = new Audio.Sound();
     
     await playbackObject.loadAsync(
@@ -69,24 +66,12 @@ export default function App() {
     playbackObject.setOnPlaybackStatusUpdate(onPlaybackStatusUpdateFunc);
 
     await setSound(playbackObject);
-    
-    /*allows the playback status to be accessed using the status hook outside 
-    the scopt of this funciton*/
-    let AVPlaybackStatus = await sound.getStatusAsync();
-    setStatus(AVPlaybackStatus)      
-
-    
+    reloadStatus()
+    console.log("sound loaded")
   }
 
-  
-  const onPlaybackStatusUpdateFunc = playbackStatus =>{
-    /* onPlaybackStatusUpdateFunc calls any time the playback status updates, 
-  or periodically based on the progressUpdateIntervalMillis property
-  */
-    
-    setStatus(playbackStatus);
-    console.log("Playback status updated")
-  };
+
+  const onPlaybackStatusUpdateFunc = playbackStatus =>{};
 
   useEffect(() => {
 
@@ -113,47 +98,36 @@ export default function App() {
 
   const reloadStatus = async () =>{
     let AVPlaybackStatus = await sound.getStatusAsync();
-    //console.log(AVPlaybackStatus)
+    console.log(AVPlaybackStatus)
     setStatus(AVPlaybackStatus)
     }
 
   async function playSound() {
-    
-    console.log('playSound Called');
+    console.log('Loading Sound');
+    console.log(sound)
+    console.log('Playing Sound');
     await sound.playAsync(); 
-    setIsPlaying("Sound playing " + true)
-    console.log(status.isPlaying);
+    setIsPlaying(true)
     reloadStatus()
     // setIsPlaying(true)
     // console.log(sound.isPlaying);
   }
   
   async function pauseSound(){
-    console.log("pauseSound Called")
     await sound.pauseAsync();
     setIsPlaying(false)
-    console.log("Sound playing " + status.isPlaying);
     reloadStatus()
     // setIsPlaying(false)
   };
 
 
-  async function advance(seconds){
-    let currentPosition = status.positionMillis;
-    await sound.setPositionAsync(currentPosition + (seconds * 1000));
-    reloadStatus()
-    console.log("Position is " + status.positionMillis);
-  }
 
   async function speedUp(){
-    let currentRate = status.rate;
-    await sound.setRateAsync(currentRate * 1.25);
-    //let AVPlaybackStatus = await sound.getStatusAsync();
-    reloadStatus()
-    console.log("Speed is " + status.rate);
+    await sound.setRateAsync(2);
+    let AVPlaybackStatus = await sound.getStatusAsync();
+    console.log(AVPlaybackStatus.positionMillis);
     
   }
-
 
   /*
   React.useEffect(() => {
@@ -174,7 +148,7 @@ export default function App() {
           source={require("../assets/images/hairGod.jpg")}
         ></Image>*/}
         <Text style={{ alignSelf: "center", justifyContent: "center" }}>
-          {isPlaying ? status.positionMillis : "press start"}
+          Audio Branch
         </Text>
       </View>
       <View
@@ -200,7 +174,7 @@ export default function App() {
       </View>
 
       <View style={styles.iconView}>
-        <TouchableOpacity  onPress = {() => advance(5)}>
+        <TouchableOpacity  >
           <Ionicons name='play-skip-back-outline'  />
         </TouchableOpacity>
         <TouchableOpacity >

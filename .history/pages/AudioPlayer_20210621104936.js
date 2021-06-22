@@ -33,7 +33,6 @@ export default function App() {
   const [sound, setSound] = useState(null); //holds the sound object
   const [isPlaying, setIsPlaying] = useState(false); //allows the handlePress function to know whether to play or pause
   const [status, setStatus] = useState(); //holds the playback status of the sound object
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;

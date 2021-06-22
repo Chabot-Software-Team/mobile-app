@@ -33,7 +33,6 @@ export default function App() {
   const [sound, setSound] = useState(null); //holds the sound object
   const [isPlaying, setIsPlaying] = useState(false); //allows the handlePress function to know whether to play or pause
   const [status, setStatus] = useState(); //holds the playback status of the sound object
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
@@ -83,7 +82,6 @@ export default function App() {
     /* onPlaybackStatusUpdateFunc calls any time the playback status updates, 
   or periodically based on the progressUpdateIntervalMillis property
   */
-    
     setStatus(playbackStatus);
     console.log("Playback status updated")
   };
@@ -138,18 +136,11 @@ export default function App() {
   };
 
 
-  async function advance(seconds){
-    let currentPosition = status.positionMillis;
-    await sound.setPositionAsync(currentPosition + (seconds * 1000));
-    reloadStatus()
-    console.log("Position is " + status.positionMillis);
-  }
 
   async function speedUp(){
     let currentRate = status.rate;
-    await sound.setRateAsync(currentRate * 1.25);
+    await sound.setRateAsync(currentRate * 2);
     //let AVPlaybackStatus = await sound.getStatusAsync();
-    reloadStatus()
     console.log("Speed is " + status.rate);
     
   }
@@ -174,7 +165,7 @@ export default function App() {
           source={require("../assets/images/hairGod.jpg")}
         ></Image>*/}
         <Text style={{ alignSelf: "center", justifyContent: "center" }}>
-          {isPlaying ? status.positionMillis : "press start"}
+          Audio Branch
         </Text>
       </View>
       <View
@@ -200,7 +191,7 @@ export default function App() {
       </View>
 
       <View style={styles.iconView}>
-        <TouchableOpacity  onPress = {() => advance(5)}>
+        <TouchableOpacity  >
           <Ionicons name='play-skip-back-outline'  />
         </TouchableOpacity>
         <TouchableOpacity >
