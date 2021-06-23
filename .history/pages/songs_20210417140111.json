@@ -1,8 +1,0 @@
-[
-    {"name": "Song 1",
-    "src": "../assets/audio/Roar.mp3"
-    },
-    {"name": "Song 2",
-        "src": "../assets/audio/show.mp3"
-    }
-]
