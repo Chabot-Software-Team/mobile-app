@@ -179,11 +179,16 @@ export default function App() {
     <View style={{ flex: 1 }}>
       <View style={{ flex: 0.5 }}></View>
       <View style={{ flex: 5, justifyContent: "center" }}>
-        {<Image
-          style={styles.imagePosition}
-          source={isLoaded ? playlist[currentIndex].getImageSource() : require("../assets/images/hairGod.jpg")}
-        ></Image>}
-        
+        {
+          <Image
+            style={styles.imagePosition}
+            source={
+              isLoaded
+                ? playlist[currentIndex].getImageSource()
+                : require("../assets/images/hairGod.jpg")
+            }
+          ></Image>
+        }
       </View>
       <View style={{ flex: 1, alignSelf: "center" }}>
         <Text>
@@ -261,7 +266,7 @@ export default function App() {
             style={{ paddingLeft: 20 }}
             onPress={() => alert("hello")}
           >
-            <Ionicons name="caret-up-circle-outline" />
+            <Ionicons size={windowWidth / 8} name="caret-up-circle-outline" />
           </TouchableOpacity>
         </View>
         <View style={{ flex: 1, alignItems: "flex-end" }}>
@@ -278,10 +283,8 @@ export default function App() {
 const styles = StyleSheet.create({
   imagePosition: {
     alignSelf: "center",
-    width: (Dimensions.get("window").width / 1.25),
-    height: (Dimensions.get("window").width /1.25 ),
-
-
+    width: Dimensions.get("window").width / 1.25,
+    height: Dimensions.get("window").width / 1.25,
   },
   iconView: {
     flex: 1,
