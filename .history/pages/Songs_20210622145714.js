@@ -12,7 +12,7 @@ class PlaylistItem{
     };
 
     getSongName(){
-        return this.name;
+        return this.songName;
     };
 
 };

@@ -40,7 +40,6 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false); //allows the handlePress function to know whether to play or pause
   const [status, setStatus] = useState(); //holds the playback status of the sound object
   const [isLoaded, setIsLoaded] = useState(false);
-  const [sliderValue, setSliderValue] = useState(0);
 
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
@@ -112,7 +111,6 @@ export default function App() {
     setStatus(playbackStatus);
     setIsLoaded(true);
     console.log("Playback status updated")
-    setSliderValue(playbackStatus.positionMillis)
     if (playbackStatus.didJustFinish == true){
       skip(1)
     }
@@ -161,13 +159,6 @@ export default function App() {
     console.log("Position is " + status.positionMillis);
   }
 
-  async function goToPosition(milliseconds){
-    if (milliseconds < status.durationMillis){
-      await sound.setPositionAsync(milliseconds);
-      reloadStatus();
-    }
-  }
-
   async function speedUp(increment){
     let currentRate = status.rate;
     await sound.setRateAsync(currentRate + increment);
@@ -193,8 +184,16 @@ export default function App() {
     setIsPlaying(true)
   }
 
-  function onSliderUpdate(){}
 
+  /*
+  React.useEffect(() => {
+    return sound
+      ? () => {
+          console.log('Unloading Sound');
+          sound.unloadAsync(); }
+      : undefined;
+  }, [sound]);
+  */
 
   return (
     <View style={{ flex: 1 }}>
@@ -207,7 +206,7 @@ export default function App() {
         <Text style={{ alignSelf: "center", justifyContent: "center" }}>
           
           {isLoaded ? playlist[currentIndex].getSongName() : "nothing loaded"}
-          {"\n" + sliderValue}
+          {/* playlist[currentIndex].getSongName() */ }
         </Text>
       </View>
       <View
@@ -220,7 +219,7 @@ export default function App() {
         <View style={{ flex: 1 }}></View>
         <View style={{ flex: 20 }}>
           {/*<Slider value = {sliderValue} onValueChange = {(sliderValue) =>setSliderValue(sliderValue)} minimumValue={0} maximumValue={100} step = {1} thumbTintColor='#04A5BA' />*/}
-          <Slider step = {1000} value = {sliderValue} onValueChange = {(sliderValue) => setSliderValue(sliderValue)} minimumValue={0} maximumValue={isLoaded ? status.durationMillis : 1000} thumbTintColor='#04A5BA'/>
+          <Slider thumbTintColor='#04A5BA'/>
         </View>
         <View style={{ flex: 1 }}></View>
       </View>

@@ -112,7 +112,6 @@ export default function App() {
     setStatus(playbackStatus);
     setIsLoaded(true);
     console.log("Playback status updated")
-    setSliderValue(playbackStatus.positionMillis)
     if (playbackStatus.didJustFinish == true){
       skip(1)
     }
@@ -193,7 +192,6 @@ export default function App() {
     setIsPlaying(true)
   }
 
-  function onSliderUpdate(){}
 
 
   return (
@@ -220,7 +218,7 @@ export default function App() {
         <View style={{ flex: 1 }}></View>
         <View style={{ flex: 20 }}>
           {/*<Slider value = {sliderValue} onValueChange = {(sliderValue) =>setSliderValue(sliderValue)} minimumValue={0} maximumValue={100} step = {1} thumbTintColor='#04A5BA' />*/}
-          <Slider step = {1000} value = {sliderValue} onValueChange = {(sliderValue) => setSliderValue(sliderValue)} minimumValue={0} maximumValue={isLoaded ? status.durationMillis : 1000} thumbTintColor='#04A5BA'/>
+          <Slider step = {1000} value = {sliderValue} onValueChange = {(sliderValue) =>setSliderValue(sliderValue)} minimumValue={0} maximumValue={isLoaded ? status.durationMillis : 1000} thumbTintColor='#04A5BA'/>
         </View>
         <View style={{ flex: 1 }}></View>
       </View>

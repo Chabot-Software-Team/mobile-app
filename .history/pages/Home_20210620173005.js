@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, Image, Dimensions, StyleSheet} from "react-native";
-import HomeCarousel from "../pages/components/HomeCarousel";
+import HomeCarousel from "./components/HomeCarousel";
 
 function Home() {
 

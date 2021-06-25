@@ -66,8 +66,6 @@ function NavigationPageStackScreen() {
       
       <NavigationPageStack.Screen name='Realtime Chabot Info' component={NavigationPage} />
       <NavigationPageStack.Screen name='Movies' component={Movies} />
-      <NavigationPageStack.Screen name='Calendar Events' component={Calendar} />
-
 
     </NavigationPageStack.Navigator>
   );
