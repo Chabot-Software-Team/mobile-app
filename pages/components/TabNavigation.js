@@ -6,16 +6,16 @@ import { StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 //page imports
-import Home from "../pages/Home";
-import AudioPlayer from "../pages/AudioPlayer";
-import NavigationPage from "../pages/NavigationPage";
-import QrScan from "../pages/QrScan";
-import Calendar from "../pages/Calendar.js";
-import Movies  from "../pages/Movies.js";
+import Home from "../Home";
+import AudioPlayer from "../AudioPlayer";
+import NavigationPage from "../NavigationPage";
+import QrScan from "../QrScan";
+import Calendar from "../Calendar.js";
+import Movies  from "../Movies.js";
 
 
-import Page1 from "../pages/articles/Page1";
-import Page2 from "../pages/articles/Page2";
+import Page1 from "../articles/Page1";
+import Page2 from "../articles/Page2";
 
 
 const HomeStack = createStackNavigator();

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Text,
   View,
@@ -6,13 +6,14 @@ import {
   Button,
   Dimensions,
   TouchableOpacity,
-  Image } from 'react-native';
-  
-import { Audio } from 'expo-av';
+  Image,
+} from "react-native";
+
+import { Audio } from "expo-av";
 
 import { Ionicons } from "@expo/vector-icons";
 
-import {PlaylistItem, playlist} from "./Songs";
+import { PlaylistItem, playlist } from "./Songs";
 
 import { Slider } from "react-native-elements";
 
@@ -45,10 +46,6 @@ export default function App() {
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
 
-  
-
-  
-  
   function millisToTime(millis) {
     //Takes a value of time in milliseconds and converts it into a minutes seconds string like 3:43
     let seconds = Math.floor(millis / 1000);
@@ -62,152 +59,135 @@ export default function App() {
     return minutes + ":" + seconds;
   }
 
-  const handlePress = () =>  {
-    if (sound == null){
-      loadSound(playlist[currentIndex].getSongSource())
-      handlePress()
-    }
-    else {
-      if(isPlaying){
-        pauseSound()
-      }
-      else{
-        playSound()
+  const handlePress = () => {
+    if (sound == null) {
+      loadSound(playlist[currentIndex].getSongSource());
+      handlePress();
+    } else {
+      if (isPlaying) {
+        pauseSound();
+      } else {
+        playSound();
       }
     }
-    
-  }
+  };
 
-  
   async function loadSound(source, playOnLoad) {
     console.log("loadSound called");
 
     const playbackObject = new Audio.Sound();
-    
-    await playbackObject.loadAsync(
-      source, {shouldPlay: playOnLoad}
-    );
 
-    console.log("Sound source loaded " + source)
+    await playbackObject.loadAsync(source, { shouldPlay: playOnLoad });
+
+    console.log("Sound source loaded " + source);
 
     playbackObject.setOnPlaybackStatusUpdate(onPlaybackStatusUpdateFunc);
 
     await setSound(playbackObject);
-    
+
     /*allows the playback status to be accessed using the status hook outside 
     the scopt of this funciton*/
     let AVPlaybackStatus = await sound.getStatusAsync();
-    setStatus(AVPlaybackStatus)      
-
-    
-    
+    setStatus(AVPlaybackStatus);
   }
 
-  
-  const onPlaybackStatusUpdateFunc = playbackStatus =>{
+  const onPlaybackStatusUpdateFunc = (playbackStatus) => {
     /* onPlaybackStatusUpdateFunc calls any time the playback status updates, 
   or periodically based on the progressUpdateIntervalMillis property
   */
-    
+
     setStatus(playbackStatus);
     setIsLoaded(true);
-    console.log("Playback status updated")
-    setSliderValue(playbackStatus.positionMillis)
-    if (playbackStatus.didJustFinish == true){
-      skip(1)
+    console.log("Playback status updated");
+    setSliderValue(playbackStatus.positionMillis);
+    if (playbackStatus.didJustFinish == true) {
+      skip(1);
     }
   };
 
   useEffect(() => {
+    loadSound(playlist[currentIndex].getSongSource(), false);
+  }, []);
 
+  useEffect(() => {
+    console.log("currentIndex is now " + currentIndex);
+  }, [currentIndex]);
 
-    loadSound(playlist[currentIndex].getSongSource(), false)
-  }, [])
-
-  useEffect(() => {console.log("currentIndex is now " + currentIndex)}, [currentIndex])
-
-
-  const reloadStatus = async () =>{
+  const reloadStatus = async () => {
     let AVPlaybackStatus = await sound.getStatusAsync();
     //console.log(AVPlaybackStatus)
-    setStatus(AVPlaybackStatus)
-    }
+    setStatus(AVPlaybackStatus);
+  };
 
   async function playSound() {
-    
-    console.log('playSound Called');
-    await sound.playAsync(); 
-    setIsPlaying("Sound playing " + true)
+    console.log("playSound Called");
+    await sound.playAsync();
+    setIsPlaying("Sound playing " + true);
     console.log(status.isPlaying);
-    reloadStatus()
+    reloadStatus();
     // setIsPlaying(true)
     // console.log(sound.isPlaying);
   }
-  
-  async function pauseSound(){
-    console.log("pauseSound Called")
+
+  async function pauseSound() {
+    console.log("pauseSound Called");
     await sound.pauseAsync();
-    setIsPlaying(false)
+    setIsPlaying(false);
     console.log("Sound playing " + status.isPlaying);
-    reloadStatus()
+    reloadStatus();
     // setIsPlaying(false)
-  };
+  }
 
-
-  async function advance(seconds){
+  async function advance(seconds) {
     let currentPosition = status.positionMillis;
-    await sound.setPositionAsync(currentPosition + (seconds * 1000));
-    reloadStatus()
+    await sound.setPositionAsync(currentPosition + seconds * 1000);
+    reloadStatus();
     console.log("Position is " + status.positionMillis);
   }
 
-  async function goToPosition(milliseconds){
-    if (milliseconds < status.durationMillis){
+  async function goToPosition(milliseconds) {
+    if (milliseconds < status.durationMillis) {
       await sound.setPositionAsync(milliseconds);
       reloadStatus();
     }
   }
 
-  async function speedUp(increment){
+  async function speedUp(increment) {
     let currentRate = status.rate;
-    await sound.setRateAsync(currentRate + increment);
+    await sound.setRateAsync(currentRate + increment, true);
     //let AVPlaybackStatus = await sound.getStatusAsync();
-    reloadStatus()
+    reloadStatus();
     console.log("Speed is " + status.rate);
-    
   }
 
-  async function skip(tracks){
-    
-    
+  async function skip(tracks) {
+    await sound.unloadAsync();
 
-    await sound.unloadAsync()
-
-    console.log("old index is " + currentIndex)
+    console.log("old index is " + currentIndex);
 
     currentIndex = (currentIndex + tracks) % playlist.length;
 
-    console.log("new index is " + currentIndex)
+    console.log("new index is " + currentIndex);
 
-    loadSound(playlist[currentIndex].getSongSource(), true)
-    setIsPlaying(true)
+    loadSound(playlist[currentIndex].getSongSource(), true);
+    setIsPlaying(true);
   }
 
-  function onSliderUpdate(){}
-
+  function onSliderUpdate() {}
 
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flex: 0.5 }}></View>
       <View style={{ flex: 5, justifyContent: "center" }}>
-        {/*<Image
+        {<Image
           style={styles.imagePosition}
-          source={require("../assets/images/hairGod.jpg")}
-        ></Image>*/}
-        <Text style={{ alignSelf: "center", justifyContent: "center" }}>
-          
+          source={isLoaded ? playlist[currentIndex].getImageSource() : require("../assets/images/hairGod.jpg")}
+        ></Image>}
+        
+      </View>
+      <View style={{ flex: 1, alignSelf: "center" }}>
+        <Text>
           {isLoaded ? playlist[currentIndex].getSongName() : "nothing loaded"}
-          {"\n" + sliderValue}
         </Text>
       </View>
       <View
@@ -220,66 +200,88 @@ export default function App() {
         <View style={{ flex: 1 }}></View>
         <View style={{ flex: 20 }}>
           {/*<Slider value = {sliderValue} onValueChange = {(sliderValue) =>setSliderValue(sliderValue)} minimumValue={0} maximumValue={100} step = {1} thumbTintColor='#04A5BA' />*/}
-          <Slider step = {1000} value = {sliderValue} onValueChange = {(sliderValue) => setSliderValue(sliderValue)} minimumValue={0} maximumValue={isLoaded ? status.durationMillis : 1000} thumbTintColor='#04A5BA'/>
+          <Slider
+            step={1000}
+            value={sliderValue}
+            onValueChange={(sliderValue) => setSliderValue(sliderValue)}
+            minimumValue={0}
+            maximumValue={isLoaded ? status.durationMillis : 1000}
+            thumbTintColor="#04A5BA"
+          />
         </View>
         <View style={{ flex: 1 }}></View>
       </View>
       <View style={{ flex: 0.5, flexDirection: "row" }}>
         <View style={{ flex: 1 }}>
-          <Text style={{ paddingLeft: 20 }}>{isLoaded ? millisToTime(status.positionMillis) : "waiting to load"}</Text>
+          <Text style={{ paddingLeft: 20 }}>
+            {isLoaded ? millisToTime(status.positionMillis) : ""}
+          </Text>
         </View>
         <View style={{ flex: 1, alignItems: "flex-end" }}>
-          <Text style={{ paddingRight: 20 }}>{isLoaded ? millisToTime(status.durationMillis) : "waiting to load"}</Text>
+          <Text style={{ paddingRight: 20 }}>
+            {isLoaded ? millisToTime(status.durationMillis) : ""}
+          </Text>
         </View>
       </View>
 
       <View style={styles.iconView}>
-        <TouchableOpacity  onPress = {() => skip(-1)}>
-          <Ionicons size={windowWidth / 8} name='play-skip-back-outline'  />
+        <TouchableOpacity onPress={() => skip(-1)}>
+          <Ionicons size={windowWidth / 8} name="play-skip-back-outline" />
         </TouchableOpacity>
-        <TouchableOpacity onPress = {() => advance(-15)}>
-          <Ionicons style={{transform: [{rotateY: '180deg'}]}} size={windowWidth / 8} name='refresh-outline'  />
+        <TouchableOpacity onPress={() => advance(-15)}>
+          <Ionicons
+            style={{ transform: [{ rotateY: "180deg" }] }}
+            size={windowWidth / 8}
+            name="refresh-outline"
+          />
         </TouchableOpacity>
-        <TouchableOpacity onPress = {() => speedUp(-0.25)}>
-          <Ionicons size={windowWidth / 8} name='play-back-outline' />
+        <TouchableOpacity onPress={() => speedUp(-0.25)}>
+          <Ionicons size={windowWidth / 8} name="play-back-outline" />
         </TouchableOpacity>
-        <TouchableOpacity  onPress={() => handlePress()}>
-          <Ionicons size = {windowWidth / 7} name= {isPlaying ? 'pause-circle-outline' : 'play-circle-outline' } />
+        <TouchableOpacity onPress={() => handlePress()}>
+          <Ionicons
+            size={windowWidth / 7}
+            name={isPlaying ? "pause-circle-outline" : "play-circle-outline"}
+          />
         </TouchableOpacity>
-        <TouchableOpacity onPress = {() => speedUp(0.25)}> 
-          <Ionicons size={windowWidth / 8} name='play-forward-outline'  />
+        <TouchableOpacity onPress={() => speedUp(0.25)}>
+          <Ionicons size={windowWidth / 8} name="play-forward-outline" />
         </TouchableOpacity>
-        <TouchableOpacity onPress = {() => advance(15)}>
-          <Ionicons size={windowWidth / 8} name='refresh-outline'  />
+        <TouchableOpacity onPress={() => advance(15)}>
+          <Ionicons size={windowWidth / 8} name="refresh-outline" />
         </TouchableOpacity>
-        <TouchableOpacity onPress = {() => skip(1)}>
-          <Ionicons size={windowWidth / 8} name='play-skip-forward-outline'  />
+        <TouchableOpacity onPress={() => skip(1)}>
+          <Ionicons size={windowWidth / 8} name="play-skip-forward-outline" />
         </TouchableOpacity>
       </View>
 
-       <View style={{ flex: 1, flexDirection: "row" }}>
+      <View style={{ flex: 1, flexDirection: "row" }}>
         <View style={{ flex: 1 }}>
           <TouchableOpacity
             style={{ paddingLeft: 20 }}
             onPress={() => alert("hello")}
           >
-            <Ionicons name='caret-up-circle-outline'  />
+            <Ionicons name="caret-up-circle-outline" />
           </TouchableOpacity>
         </View>
         <View style={{ flex: 1, alignItems: "flex-end" }}>
           <Text style={{ paddingRight: 20 }}>
-          {isLoaded ? status.rate : "1"}{"x"}
+            {isLoaded ? status.rate : "1"}
+            {"x"}
           </Text>
         </View>
       </View>
-    </View> 
+    </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   imagePosition: {
     alignSelf: "center",
+    width: (Dimensions.get("window").width / 1.25),
+    height: (Dimensions.get("window").width /1.25 ),
+
+
   },
   iconView: {
     flex: 1,
@@ -295,4 +297,3 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
 });
-
