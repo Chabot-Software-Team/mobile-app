@@ -14,7 +14,7 @@ export default function Page1() {
 
 const styles = StyleSheet.create({
   headerText: {
-    fontSize: 40,
+    fontSize: 60,
   },
   bodyText: {
     fontSize: 40,
