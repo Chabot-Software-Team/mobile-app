@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Text,
   View,
@@ -6,9 +6,10 @@ import {
   Button,
   Dimensions,
   TouchableOpacity,
-  Image } from 'react-native';
-  
-import { Audio } from 'expo-av';
+  Image,
+} from "react-native";
+
+import { Audio } from "expo-av";
 
 import { Ionicons } from "@expo/vector-icons";
 
@@ -28,73 +29,64 @@ import { Ionicons } from "@expo/vector-icons";
 // soundObject.setIsLoopingAsync(value)
 // soundObject.setProgressUpdateIntervalAsync(millis)
 
-
 export default function App() {
   const [sound, setSound] = useState();
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false);
   const [status, setStatus] = useState();
 
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
 
-  
-
-  const handlePress = () =>  {
-    if(status.isPlaying){
-      pauseSound()
+  const handlePress = () => {
+    if (status.isPlaying) {
+      pauseSound();
+    } else {
+      playSound();
     }
-    else{
-      playSound()
-    }
-  }
+  };
 
   useEffect(() => {
-
-    const loadSound = async () =>{
+    const loadSound = async () => {
       const playbackObject = new Audio.Sound();
-      await playbackObject.loadAsync(
-        require('../assets/audio/song1.mp3'),
-      )
-    //   const { sound: playbackObject } = await Audio.Sound.createAsync(
-    //     require('../assets/audio/song1.mp3'),
-    //     {shouldPlay: false}
-    //  );
-      
-    reloadStatus()
+      await playbackObject.loadAsync(require("../assets/audio/song1.mp3"));
+      //   const { sound: playbackObject } = await Audio.Sound.createAsync(
+      //     require('../assets/audio/song1.mp3'),
+      //     {shouldPlay: false}
+      //  );
 
-     setSound(playbackObject);
-    }
-    loadSound()
-  }, [])
+      reloadStatus();
+
+      setSound(playbackObject);
+    };
+    loadSound();
+  }, []);
 
   // useEffect(()=>{
   //   reloadStatus()
   // }, [sound])
 
-
-  const reloadStatus = async () =>{
+  const reloadStatus = async () => {
     let AVPlaybackStatus = await sound.getStatusAsync();
-    console.log(AVPlaybackStatus)
-    setStatus(AVPlaybackStatus)
-    }
+    console.log(AVPlaybackStatus);
+    setStatus(AVPlaybackStatus);
+  };
 
   async function playSound() {
-    console.log('Loading Sound');
-    console.log(sound)
-    console.log('Playing Sound');
-    await sound.playAsync(); 
-    reloadStatus()
+    console.log("Loading Sound");
+    console.log(sound);
+    console.log("Playing Sound");
+    await sound.playAsync();
+    reloadStatus();
     // setIsPlaying(true)
     // console.log(sound.isPlaying);
   }
-  
-  async function pauseSound(){
-    await sound.pauseAsync();
-    reloadStatus()
-    // setIsPlaying(false)
-  };
 
-  
+  async function pauseSound() {
+    await sound.pauseAsync();
+    reloadStatus();
+    // setIsPlaying(false)
+  }
+
   // React.useEffect(() => {
   //   return sound
   //     ? () => {
@@ -102,7 +94,6 @@ export default function App() {
   //         sound.unloadAsync(); }
   //     : undefined;
   // }, [sound]);
-
 
   return (
     <View style={{ flex: 1 }}>
@@ -139,40 +130,39 @@ export default function App() {
       </View>
 
       <View style={styles.iconView}>
-        <TouchableOpacity  >
-          <Ionicons name='play-skip-back-outline'  />
+        <TouchableOpacity>
+          <Ionicons name="play-skip-back-outline" />
         </TouchableOpacity>
-        <TouchableOpacity >
-          <Ionicons name='play-back-outline' />
+        <TouchableOpacity>
+          <Ionicons name="play-back-outline" />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handlePress()}>
-          <Ionicons name= "pause-circle-outline" />
+          <Ionicons name="pause-circle-outline" />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Ionicons name='play-forward-outline'  />
+          <Ionicons name="play-forward-outline" />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Ionicons name='play-skip-forward-outline'  />
+          <Ionicons name="play-skip-forward-outline" />
         </TouchableOpacity>
       </View>
 
-       <View style={{ flex: 1, flexDirection: "row" }}>
+      <View style={{ flex: 1, flexDirection: "row" }}>
         <View style={{ flex: 1 }}>
           <TouchableOpacity
             style={{ paddingLeft: 20 }}
             onPress={() => alert("hello")}
           >
-            <Ionicons name='caret-up-circle-outline'  />
+            <Ionicons name="caret-up-circle-outline" />
           </TouchableOpacity>
         </View>
         <View style={{ flex: 1, alignItems: "flex-end" }}>
           <Text style={{ paddingRight: 20 }}>1x</Text>
         </View>
       </View>
-    </View> 
+    </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   imagePosition: {

@@ -1,16 +1,6 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 import TabNavigation from "./components/TabNavigation";
 
 export default function App() {
-  return <TabNavigation />;
+	return <TabNavigation />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

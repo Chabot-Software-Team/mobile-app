@@ -12,17 +12,14 @@ import NavigationPage from "../pages/NavigationPage";
 import QrScan from "../pages/QrScan";
 import Calendar from "../pages/Calendar.js";
 
-
-
 import Page1 from "../pages/articles/Page1";
 import Page2 from "../pages/articles/Page2";
-
 
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name='Home' component={Home} />
+      <HomeStack.Screen name="Home" component={Home} />
     </HomeStack.Navigator>
   );
 }
@@ -31,7 +28,7 @@ const AudioPlayerStack = createStackNavigator();
 function AudioPlayerStackScreen() {
   return (
     <AudioPlayerStack.Navigator>
-      <AudioPlayerStack.Screen name='AudioPlayer' component={AudioPlayer} />
+      <AudioPlayerStack.Screen name="AudioPlayer" component={AudioPlayer} />
     </AudioPlayerStack.Navigator>
   );
 }
@@ -40,11 +37,9 @@ const QRScanStack = createStackNavigator();
 function QrScanStackScreen() {
   return (
     <QRScanStack.Navigator>
-      <QRScanStack.Screen name='QrScan' component={QrScan} />
-      <QRScanStack.Screen name='Page1' component={Page1} />
-      <QRScanStack.Screen name='Page2' component={Page2} />
-      
-
+      <QRScanStack.Screen name="QrScan" component={QrScan} />
+      <QRScanStack.Screen name="Page1" component={Page1} />
+      <QRScanStack.Screen name="Page2" component={Page2} />
     </QRScanStack.Navigator>
   );
 }
@@ -53,7 +48,7 @@ const CalendarStack = createStackNavigator();
 function CalendarStackScreen() {
   return (
     <CalendarStack.Navigator>
-      <CalendarStack.Screen name='Calendar' component={Calendar} />
+      <CalendarStack.Screen name="Calendar" component={Calendar} />
     </CalendarStack.Navigator>
   );
 }
@@ -64,7 +59,7 @@ function NavigationPageStackScreen() {
   return (
     <NavigationPageStack.Navigator>
       <NavigationPageStack.Screen
-        name='Realtime Chabot Info'
+        name="Realtime Chabot Info"
         component={NavigationPage}
       />
     </NavigationPageStack.Navigator>
@@ -80,17 +75,39 @@ function NavigationPageStackScreen() {
 //   );
 // }
 
-
-
 const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name='Home' component={HomeStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='home-outline' size={20} />)}}/>
-        <Tab.Screen name='Audio' component={AudioPlayerStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='headset-outline' size={20} />)}}/>
-        <Tab.Screen name='QrScan' component={QrScanStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='qr-code-outline' size={20} />)}}/>
-        <Tab.Screen name='More' component={NavigationPageStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='add-outline' size={20} />)}}/>
+        <Tab.Screen
+          name="Home"
+          component={HomeStackScreen}
+          options={{
+            tabBarIcon: () => <Ionicons name="home-outline" size={20} />,
+          }}
+        />
+        <Tab.Screen
+          name="Audio"
+          component={AudioPlayerStackScreen}
+          options={{
+            tabBarIcon: () => <Ionicons name="headset-outline" size={20} />,
+          }}
+        />
+        <Tab.Screen
+          name="QrScan"
+          component={QrScanStackScreen}
+          options={{
+            tabBarIcon: () => <Ionicons name="qr-code-outline" size={20} />,
+          }}
+        />
+        <Tab.Screen
+          name="More"
+          component={NavigationPageStackScreen}
+          options={{
+            tabBarIcon: () => <Ionicons name="add-outline" size={20} />,
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
