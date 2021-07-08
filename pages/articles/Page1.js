@@ -1,13 +1,21 @@
 import React from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 
+import { globalStyles } from "../globalStyles";
+
+import CaptionedImage from "../components/CaptionedImage";
+
 export default function Page1() {
   return (
     <ScrollView style={styles.scrollView}>
-      <Text style={styles.bodyText}>
+      <Text style={globalStyles.bodyText}>
         Page1 Page1Page1Page1Page1Page1Page1 Page1
         Page1Page1Page1Page1Page1Page1Page1Page1 Page1 Page1 Page1 Page1 Page1
       </Text>
+      <CaptionedImage
+        source={require("C:Users/aidan/Documents/mobile-app/assetsimages8-inch-Telescope-Leah.jpg")}
+        caption={"captioned text"}
+      ></CaptionedImage>
     </ScrollView>
   );
 }
@@ -23,6 +31,6 @@ const styles = StyleSheet.create({
   buttons: {},
   scrollView: {
     flex: 1,
-    marginHorizontal: 20,
+    marginHorizontal: 30,
   },
 });

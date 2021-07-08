@@ -1,0 +1,29 @@
+Things to do, in no particular order
+
+https://docs.google.com/document/d/1jpfPTMFJ5pV2LuV6x8WUiJZOlgmmNEs8n2s91wtB1eQ/edit
+
+1. Create an article page format
+    a. Captioned image component
+    b. text, header, and navigation format
+
+2. Create a page to view articles
+    a. must be able to navigate to them from the page
+
+3. Create a page to view Audio clips
+    a. can be a popup menu on the page
+    https://github.com/instea/react-native-popup-menu
+
+4. Create a global styles stylesheet
+    a. This can ensure consistent formatting throughout the app
+    b. existing stylesheets which are reduntant can be deleted
+
+5. Create a chabot map
+    a. Wait until we have an updated map of the center
+    b. certain parts of the navigation can be built out
+
+6. Changing images while Audio is playing
+    a. Currently, there is only one image that shows per audio clip
+    b. create the functionality for different images to show at different timestamps
+    c. maybe also create functionality to play video
+
+7. be able to qr navigate to audio player with a specific song starting to play (scan qr code and then it plays in the audio player)
