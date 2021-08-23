@@ -1,12 +1,18 @@
 import React from "react";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function NavigationPage() {
   const navigation = useNavigation();
 
-  const buttons = [
+  let buttons = [
     {
       name: "Movies",
       iconName: "videocam-outline",
@@ -27,27 +33,49 @@ export default function NavigationPage() {
       iconName: "newspaper-outline",
       file: "./Calendar.js",
     },
-  ];
+    {
+      name: "Staff",
+      iconName: "person",
+      file: "./Calendar.js",
+    },
+  ] as const;
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {buttons.map((button) => (
         <TouchableOpacity
+          key={button.name}
           style={styles.button}
-          onPress={() => navigation.navigate(button.file)}
+          onPress={() => navigation.navigate(button.name)}
         >
-          <Text style={styles.buttonText}>{button.name}</Text>
-          <Ionicons style={styles.icon} name={button.iconName} size={20} />
+          <View style={styles.iconAndTitle}>
+            <Ionicons
+              style={styles.icon}
+              color="#2ED0CF"
+              name={button.iconName}
+              size={20}
+            />
+            <Text style={styles.buttonText}>{button.name}</Text>
+          </View>
+          <Ionicons
+            style={styles.icon2}
+            color="#2ED0CF"
+            name="arrow-forward"
+            size={20}
+          />
         </TouchableOpacity>
       ))}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "column",
+    backgroundColor: "white",
+  },
+  iconAndTitle: {
+    flex: 0,
+    flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
   },
@@ -59,25 +87,25 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    backgroundColor: "white",
-    borderRadius: 15,
-    width: "80%",
-    margin: 20,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.4,
-    shadowRadius: 2,
-    elevation: 5,
-    flexDirection: "row",
     justifyContent: "space-between",
+    backgroundColor: "white",
+    width: "100%",
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: "#D9D9D9",
+    flexDirection: "row",
     alignItems: "center",
   },
   buttonText: {
+    color: "#1B2832",
     fontSize: 20,
-    marginLeft: 70,
-    marginRight: 10,
+    marginLeft: 20,
   },
   icon: {
+    marginLeft: 30,
+  },
+  icon2: {
     marginRight: 30,
   },
 });

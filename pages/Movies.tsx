@@ -1,20 +1,16 @@
 import React from "react";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import axios from 'axios';
-import cheerio from 'cheerio';
+import axios from "axios";
+import cheerio from "cheerio";
 
 // import template movie component
 import Movie from "./movieDetails/Movie1";
 
-
-
 export default function Movies() {
-
   // // Movies start empty
   // const [movies, setMovies] = useState([]);
-
 
   // const getMovies = async () => {
   //   async function fetchHTML(url) {
@@ -28,7 +24,6 @@ export default function Movies() {
   //   setMovies(); //set to movie array
   //   console.log();
   // };
-
 
   return (
     <View>

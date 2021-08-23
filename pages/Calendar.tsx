@@ -3,29 +3,33 @@ import { useEffect, useState } from "react";
 import { StyleSheet, Text, ScrollView } from "react-native";
 
 import axios from "axios";
-import cheerio from "cheerio";
+import cheerio, { CheerioAPI } from "cheerio";
 
 export default function Calendar() {
   const [calendar, setCalendar] = useState([]);
 
-  var url = "https://chabotspace.org/events/calendar-view/";
+  var url: string = "https://chabotspace.org/events/calendar-view/";
 
-  async function fetchHTML(url) {
+  async function fetchHTML(url: string): Promise<CheerioAPI> {
     const { data } = await axios.get(url);
     return cheerio.load(data);
     // return data
   }
 
   class Event {
+    month: string;
+    dayOfWeek: string;
+    date: string;
+    name: string;
     constructor() {
       (this.month = ""),
         (this.dayOfWeek = ""),
-        (this.date = 0),
+        (this.date = ""),
         (this.name = "");
     }
   }
-  const localDate = new Date();
-  const months = [
+  const localDate: Date = new Date();
+  const months: string[] = [
     "January",
     "February",
     "March",
@@ -39,12 +43,12 @@ export default function Calendar() {
     "November",
     "December",
   ];
-  let currentMonth = months[localDate.getMonth()];
+  let currentMonth: string = months[localDate.getMonth()];
 
   useEffect(() => {
     async function parse() {
       const $ = await fetchHTML(url);
-      var events = [];
+      var events: Event[] = [];
       $(".tribe-events-has-events").each(function () {
         var event = new Event();
         event.date = $(this).children().eq(0).text().trim();
@@ -58,7 +62,7 @@ export default function Calendar() {
   }, []);
 
   return (
-    <ScrollView style={styles.scrollView}>
+    <ScrollView>
       {calendar.map((event) => (
         <Text style={styles.button}>
           {" "}

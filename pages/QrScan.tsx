@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
   text: {
     color: "white",
     textTransform: "uppercase",
-
     fontSize: 18,
     letterSpacing: 1.5,
   },
@@ -45,7 +44,7 @@ export default function QrScan() {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = ({ data }: { data: string }) => {
     setScanned(true);
     navigate(data);
   };
@@ -59,7 +58,7 @@ export default function QrScan() {
 
   const navigation = useNavigation();
 
-  function navigate(text) {
+  function navigate(text: string) {
     console.log(text);
     if (text == "111") {
       navigation.navigate("Page1");
@@ -71,21 +70,15 @@ export default function QrScan() {
     setText("000");
   }
   return (
-    <View flex={1}>
+    <View>
       <View style={styles.container}>
         <BarCodeScanner
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
         />
-        {scanned && (
-          <TouchableOpacity
-            title={"Tap to Scan Again"}
-            onPress={() => setScanned(false)}
-          />
-        )}
+        {scanned && <TouchableOpacity onPress={() => setScanned(false)} />}
       </View>
-      <View flex={0.25}></View>
-      <View flex={0.25}>
+      <View>
         <TextInput
           style={{
             height: 40,
