@@ -1,5 +1,8 @@
 # mobile-app
-<br>
+<br>  
+
+## Note: If you'd like to contribute, please post your GitHub email in #software-engineering on the Discord server, and I'll be happy to add you. Thanks! :) Also, scroll down for a guide to Git if you're confused.
+<br>  
 
 # Overview
 
@@ -21,7 +24,14 @@ This is the repository for a mobile app by the [Chabot Space &amp; Science Cente
 
 ### **Latest Screenshots**  
 
-<img src="./readme-images/6-19-21.png" width="50%">  
+<div style="display: flex; flex-flow: row wrap; justify-content: space-between; gap: 20px;">
+<div> <img src="./readme-images/1.png" style="width: 150px; "> <p style="text-align: center; max-width: 150px">Home page with calendar updates fetched from Chabot's website.</p></div>
+<div> <img src="./readme-images/2.png" style="width: 150px; "> <p style="text-align: center; max-width: 150px">Animated planet loader while it fetches the calendar data.</p></div>
+<div> <img src="./readme-images/3.png" style="width: 150px; "> <p style="text-align: center; max-width: 150px">More page with buttons for pages (feel free to add your own pages!)</p></div>
+<div> <img src="./readme-images/4.png" style="width: 150px; "> <p style="text-align: center; max-width: 150px">One of those pages is this weather page, with live data from Chabot's weather station. Estimates which telescopes are open. </p></div>
+<div> <img src="./readme-images/5.png" style="width: 150px; "> <p style="text-align: center; max-width: 150px">Volgisitics is embedded on this "Staff" page.</p></div>
+<div> <img src="./readme-images/6.png" style="width: 150px; "> <p style="text-align: center; max-width: 150px">The icon design we're thinking of.</p></div>
+</div> 
 <br>  
 <br>  
 
@@ -51,8 +61,12 @@ The theory behind git is summed up in the image below.
 ```
 cd Documents
 ```
+To go up a directory in case you need it:
+```
+cd ..
+```
 
-2. Now you are ready to use git. (Be aware that you might need to put in your github info after some of these steps!) First you need to copy this remote repository to your machine using the clone command:  
+2. Now you are ready to use git. [(It should come with your computer, but click here if you think you don't have it)](https://git-scm.com/downloads) (Be aware that you might need to put in your github info after some of these steps!) First you need to copy this remote repository to your machine using the clone command:  
 ```
 git clone https://github.com/Chabot-Software-Team/mobile-app.git
 ```
@@ -72,7 +86,7 @@ git add .
 ```
 git commit -m "Added name to PRACTICE.txt"
 ```
-5. Tell git to save the url of the remote repository so you don't have to type it everytime. **If it says "fatal: remote origin already exists." don't worry just go to #4"**    
+5. Tell git to save the url of the remote repository so you don't have to type it everytime. **If it says "fatal: remote origin already exists." don't worry just go to #6"**    
 ```
 git remote add origin https://github.com/Chabot-Software-Team/mobile-app.git
 ```  
