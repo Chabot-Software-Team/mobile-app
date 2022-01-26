@@ -103,6 +103,9 @@ import { Text, View, StyleSheet, Button, TextInput, TouchableOpacity } from 'rea
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { useNavigation } from "@react-navigation/native";
 
+//https://reactjs.org/docs/hooks-rules.html
+
+
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "#2ed0cf",
@@ -121,6 +124,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
+    padding: 10,
+  },
+  scannerContainer: {
+    flex: 3,
+    flexDirection: "column",
+    justifyContent: "center",
+    padding: 10,
   },
 });
 
@@ -136,6 +146,17 @@ export default function App() {
       setHasPermission(status === 'granted');
     })();
   }, []);
+
+  function navigate(text: string) {
+    console.log(text);
+    
+    if (text == "111") {
+      navigation.navigate("Page1");
+    } else if (text == "112") {
+      navigation.navigate("Page2");
+    }
+    
+  }
 
   const handleBarCodeScanned = (data: any) => {
     setScanned(true);
@@ -155,17 +176,10 @@ export default function App() {
 
   const navigation = useNavigation();
 
-  function navigate(text: string) {
-    console.log(text);
-    if (text == "111") {
-      navigation.navigate("Page1");
-    } else if (text == "112") {
-      navigation.navigate("Page2");
-    }
-  }
+  
   return (
     <View style={styles.container}>
-      <View style = {styles.container}>
+      <View style = {styles.scannerContainer}>
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
