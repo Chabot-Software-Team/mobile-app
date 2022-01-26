@@ -1,3 +1,9 @@
+/*
+
+This page needs serious work, but is not a priority as we currently have no audio tour!
+
+*/
+
 import React, { useEffect, useState } from "react";
 import {
   Text,
@@ -210,7 +216,7 @@ export default function App() {
     <View style={{ flex: 1 }}>
       <View style={{ flex: 0.5 }}></View>
       <View style={{ flex: 5, justifyContent: "center" }}>
-        {
+        
           <Image
             style={styles.imagePosition}
             source={
@@ -219,7 +225,7 @@ export default function App() {
                 : require("../assets/images/hairGod.jpg")
             } 
           ></Image>
-        }
+        
       </View>
       <View style={{ flex: 1, alignSelf: "center" }}>
         <Text>

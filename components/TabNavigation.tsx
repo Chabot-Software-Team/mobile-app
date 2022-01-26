@@ -88,13 +88,17 @@ export default function App() {
             tabBarIcon: () => <Ionicons name="home-outline" size={20} />,
           }}
         />
-        <Tab.Screen
+        {
+        
+        //The audioplayer is currently broken, so I removed it from the navigator until it is fixed
+        
+        /*<Tab.Screen
           name="Audio"
           component={AudioPlayerStackScreen}
           options={{
             tabBarIcon: () => <Ionicons name="headset-outline" size={20} />,
           }}
-        />
+        />*/}
         <Tab.Screen
           name="QrScan"
           component={QrScanStackScreen}
