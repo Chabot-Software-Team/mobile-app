@@ -138,7 +138,7 @@ export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
   const [text, setText] = useState("000");
   const [scanned, setScanned] = useState(false);
-  
+  const navigation = useNavigation();
 
   useEffect(() => {
     (async () => {
@@ -174,7 +174,7 @@ export default function App() {
     return <Text>No access to camera</Text>;
   }
 
-  const navigation = useNavigation();
+
 
   
   return (
