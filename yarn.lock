@@ -5295,7 +5295,7 @@ expo-cli@^5.0.3:
     wrap-ansi "^7.0.0"
     xdl "59.2.22"
 
-expo-constants@~11.0.2:
+expo-constants@~11.0.1, expo-constants@~11.0.2:
   version "11.0.2"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-11.0.2.tgz#069930145908fef7d76bf72a1a874a1d4621af82"
   integrity sha512-CVjM+FbOMe/nFOSly5lnj0seMAYsjjc6+q3X8nIXG+gtw9iNBLwMX3Fz308rxiaPRJw+TBdd5/mcGJdNfoS+ew==
@@ -5330,6 +5330,16 @@ expo-keep-awake@~9.2.0:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-9.2.0.tgz#9cbdcc8264c943ef29a58326236cd34267e98f43"
   integrity sha512-R5jAx5j3MqrhKFB307FBpaHtYSYeVIFX/rVforBF5inKonYjXRWVhjGoBjolF4geAryNamC3NKhMfxyaaB0W6Q==
+
+expo-linking@~2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/expo-linking/-/expo-linking-2.3.1.tgz#477af2bcc156a7f8ba9961c7b3f4aa103e18db98"
+  integrity sha512-c2O23OdWOHaIRAKhveZ/PhdNq8DUx3995GQKtnz0WK7fuAmEYM8GU/F6KIUXV0QGEkRKB7drDb8Rk2JYi39Gag==
+  dependencies:
+    expo-constants "~11.0.1"
+    invariant "^2.2.4"
+    qs "^6.5.0"
+    url-parse "^1.4.4"
 
 expo-modules-autolinking@^0.0.3:
   version "0.0.3"
@@ -10122,6 +10132,13 @@ qs@6.9.6:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.6.tgz#26ed3c8243a431b2924aca84cc90471f35d5a0ee"
   integrity sha512-TIRk4aqYLNoJUbd+g2lEdz5kLWIuTMRagAXxl78Q0RiVjAOugHmeKNGdd3cwo/ktpf9aL9epCfFqWDEKysUlLQ==
 
+qs@^6.5.0:
+  version "6.10.3"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.10.3.tgz#d6cde1b2ffca87b5aa57889816c5f81535e22e8e"
+  integrity sha512-wr7M2E0OFRfIfJZjKGieI8lBKb7fRCH4Fv5KNPEs7gJ8jadvotdsS08PzOKR7opXhZ/Xkjtt3WF9g38drmyRqQ==
+  dependencies:
+    side-channel "^1.0.4"
+
 qs@~6.5.2:
   version "6.5.3"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.3.tgz#3aeeffc91967ef6e35c0e488ef46fb296ab76aad"
@@ -12502,10 +12519,8 @@ watchpack@^1.6.1:
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.7.5.tgz#1267e6c55e0b9b5be44c2023aed5437a2c26c453"
   integrity sha512-9P3MWk6SrKjHsGkLT2KHXdQ/9SNkyoJbabxnKOoJepsvJjJG8uYTR3yTPxPQvNDI3w4Nz1xnE0TLHK4RIVe/MQ==
   dependencies:
-    chokidar "^3.4.1"
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
-    watchpack-chokidar2 "^2.0.1"
   optionalDependencies:
     chokidar "^3.4.1"
     watchpack-chokidar2 "^2.0.1"
