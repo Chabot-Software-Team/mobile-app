@@ -12,6 +12,7 @@ import NavigationPage from "../NavigationPage";
 import QrScan from "../QrScan";
 import Calendar from "../Calendar.js";
 import Movies  from "../Movies.js";
+import Map from "../Map";
 
 
 import Page1 from "../articles/Page1";
@@ -38,11 +39,14 @@ function AudioPlayerStackScreen() {
 
 const QRScanStack = createStackNavigator();
 function QrScanStackScreen() {
+  
+  
   return (
     <QRScanStack.Navigator>
       <QRScanStack.Screen name='QrScan' component={QrScan} />
       <QRScanStack.Screen name='Page1' component={Page1} />
       <QRScanStack.Screen name='Page2' component={Page2} />
+      <QRScanStack.Screen name='Map' component={Map} />
       
 
     </QRScanStack.Navigator>
@@ -93,6 +97,7 @@ export default function App() {
         <Tab.Screen name='Audio' component={AudioPlayerStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='headset-outline' size={20} />)}}/>
         <Tab.Screen name='QrScan' component={QrScanStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='qr-code-outline' size={20} />)}}/>
         <Tab.Screen name='More' component={NavigationPageStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='add-outline' size={20} />)}}/>
+        
       </Tab.Navigator>
     </NavigationContainer>
   );

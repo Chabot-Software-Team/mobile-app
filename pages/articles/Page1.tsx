@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 
@@ -5,8 +7,9 @@ export default function Page1() {
   return (
     <ScrollView style={styles.scrollView}>
       <Text style={styles.bodyText}>
-        Page1 Page1Page1Page1Page1Page1Page1 Page1
-        Page1Page1Page1Page1Page1Page1Page1Page1 Page1 Page1 Page1 Page1 Page1
+        Page1 
+
+        please update please
       </Text>
     </ScrollView>
   );

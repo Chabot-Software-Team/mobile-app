@@ -155,6 +155,10 @@ export default function App() {
     } else if (text == "112") {
       navigation.navigate("Page2");
     }
+    else if (text == "113") {
+      navigation.navigate("Map");
+      console.log("going to map");
+    }
     
   }
 
