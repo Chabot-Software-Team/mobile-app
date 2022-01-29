@@ -3,7 +3,7 @@ import { StyleSheet, Image, View, Dimensions, Text } from "react-native";
 
 //size of image, caption
 export default function captionedImage() {
-// export default function captionedImage(props) {     <- TS said you don't use props and unused variables are no nos. I just removed it for now
+  // export default function captionedImage(props) {     <- TS said you don't use props and unused variables are no nos. I just removed it for now
   return (
     <View>
       {/* <Image style={styles.images}></Image> */}

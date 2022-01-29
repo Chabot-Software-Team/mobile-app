@@ -11,7 +11,7 @@ export default function App() {
     config: {
       screens: {
         Home: "home",
-				QrScan: "qrscan",
+        QrScan: "qrscan",
         Movies: "movies",
       },
     },
@@ -19,7 +19,7 @@ export default function App() {
   const handleDeepLink = (event: any) => {
     let data = Linking.parse(event.url);
     setData(data);
-	};
+  };
 
   useEffect(() => {
     Linking.addEventListener("url", handleDeepLink);
@@ -28,5 +28,5 @@ export default function App() {
     };
   }, []);
 
-	return <TabNavigation linking={linking}/>;
+  return <TabNavigation linking={linking} />;
 }

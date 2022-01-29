@@ -89,9 +89,9 @@ function NavigationPageStackScreen() {
 //           }}
 //         />
 //         {
-        
+
 //         //The audioplayer is currently broken, so I removed it from the navigator until it is fixed
-        
+
 //         /*<Tab.Screen
 //           name="Audio"
 //           component={AudioPlayerStackScreen}
@@ -120,18 +120,44 @@ function NavigationPageStackScreen() {
 
 const Tab = createBottomTabNavigator();
 interface ITabNavigationProps {
-  linking: LinkingOptions
+  linking: LinkingOptions;
 }
-const TabNavigation: React.FC<ITabNavigationProps> = (props: ITabNavigationProps) => {
+const TabNavigation: React.FC<ITabNavigationProps> = (
+  props: ITabNavigationProps
+) => {
   return (
     <NavigationContainer linking={props.linking}>
       <Tab.Navigator>
-        <Tab.Screen name='Home' component={HomeStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='home-outline' size={20} />)}}/>
-        <Tab.Screen name='Audio' component={AudioPlayerStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='headset-outline' size={20} />)}}/>
-        <Tab.Screen name='QrScan' component={QrScanStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='qr-code-outline' size={20} />)}}/>
-        <Tab.Screen name='More' component={NavigationPageStackScreen} options={{tabBarIcon: ()=>(<Ionicons name='add-outline' size={20} />)}}/>
+        <Tab.Screen
+          name="Home"
+          component={HomeStackScreen}
+          options={{
+            tabBarIcon: () => <Ionicons name="home-outline" size={20} />,
+          }}
+        />
+        <Tab.Screen
+          name="Audio"
+          component={AudioPlayerStackScreen}
+          options={{
+            tabBarIcon: () => <Ionicons name="headset-outline" size={20} />,
+          }}
+        />
+        <Tab.Screen
+          name="QrScan"
+          component={QrScanStackScreen}
+          options={{
+            tabBarIcon: () => <Ionicons name="qr-code-outline" size={20} />,
+          }}
+        />
+        <Tab.Screen
+          name="More"
+          component={NavigationPageStackScreen}
+          options={{
+            tabBarIcon: () => <Ionicons name="add-outline" size={20} />,
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
-}
+};
 export default TabNavigation;

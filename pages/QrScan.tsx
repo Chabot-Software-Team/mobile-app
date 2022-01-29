@@ -98,13 +98,12 @@ export default function QrScan() {
 
 */
 
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import React, { useState, useEffect } from "react";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
-import { Button, TextInput} from 'react-native-paper';
+import { Button, TextInput } from "react-native-paper";
 //https://reactjs.org/docs/hooks-rules.html
-
 
 const styles = StyleSheet.create({
   button: {
@@ -143,23 +142,21 @@ export default function App() {
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
+      setHasPermission(status === "granted");
     })();
   }, []);
 
   function navigate(text: string) {
     console.log(text);
-    
+
     if (text == "111") {
       navigation.navigate("Page1");
     } else if (text == "112") {
       navigation.navigate("Page2");
-    }
-    else if (text == "113") {
+    } else if (text == "113") {
       navigation.navigate("Map");
       console.log("going to map");
     }
-    
   }
 
   const handleBarCodeScanned = (data: any) => {
@@ -168,7 +165,6 @@ export default function App() {
     console.log(data.data);
     navigate(data.data);
     setScanned(false);
-    
   };
 
   if (hasPermission === null) {
@@ -178,19 +174,16 @@ export default function App() {
     return <Text>No access to camera</Text>;
   }
 
-
-
-  
   return (
     <View style={styles.container}>
-      <View style = {styles.scannerContainer}>
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
-      />
-      {/* {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />} */}
+      <View style={styles.scannerContainer}>
+        <BarCodeScanner
+          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+          style={StyleSheet.absoluteFillObject}
+        />
+        {/* {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />} */}
       </View>
-      
+
       <View style={styles.container}>
         <TextInput
           style={{
@@ -206,9 +199,10 @@ export default function App() {
         {/* <TouchableOpacity style={styles.button} onPress={() => navigate(text)}>
           <Text style={styles.text}>Go To Page</Text>
         </TouchableOpacity> */}
-        <Button icon="camera" mode="contained" onPress={()=> navigate(text)}>Enter</Button>
+        <Button icon="camera" mode="contained" onPress={() => navigate(text)}>
+          Enter
+        </Button>
       </View>
     </View>
   );
 }
-
