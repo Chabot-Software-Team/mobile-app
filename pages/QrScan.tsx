@@ -99,10 +99,10 @@ export default function QrScan() {
 */
 
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { useNavigation } from "@react-navigation/native";
-
+import { Button, TextInput} from 'react-native-paper';
 //https://reactjs.org/docs/hooks-rules.html
 
 
@@ -188,7 +188,7 @@ export default function App() {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
-      {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+      {/* {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />} */}
       </View>
       
       <View style={styles.container}>
@@ -198,12 +198,15 @@ export default function App() {
             borderColor: "gray",
             borderWidth: 1,
           }}
-          placeholder="type your code here"
+          autoComplete={false}
+          value={text}
+          label="Or, type display code here"
           onChangeText={(input) => setText(input)}
-        ></TextInput>
-        <TouchableOpacity style={styles.button} onPress={() => navigate(text)}>
+        />
+        {/* <TouchableOpacity style={styles.button} onPress={() => navigate(text)}>
           <Text style={styles.text}>Go To Page</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+        <Button icon="camera" mode="contained" onPress={()=> navigate(text)}>Enter</Button>
       </View>
     </View>
   );
