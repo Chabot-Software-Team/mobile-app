@@ -44,7 +44,7 @@ import { AVPlaybackSource } from "expo-av/build/AV";
 //don't move this out of global scope
 let currentIndex = 0;
 
-export default function App() {  
+export default function App() {
   const [sound, setSound] = useState<Audio.Sound>(null); //holds the sound object
   const [isPlaying, setIsPlaying] = useState(false); //allows the handlePress function to know whether to play or pause
   const [status, setStatus] = useState<AVPlaybackStatus>(null); //holds the playback status of the sound object
@@ -80,7 +80,8 @@ export default function App() {
     }
   };
 
-  async function loadSound(source: AVPlaybackSource, playOnLoad?: boolean) { // <- theres a question mark here because on line 66 you didn't give it, so you need to mark that it's "optional" with a ? which says "this can sometimes be null and that's ok" if you want to sometimes not give it
+  async function loadSound(source: AVPlaybackSource, playOnLoad?: boolean) {
+    // <- theres a question mark here because on line 66 you didn't give it, so you need to mark that it's "optional" with a ? which says "this can sometimes be null and that's ok" if you want to sometimes not give it
     console.log("loadSound called");
 
     const playbackObject = new Audio.Sound();
@@ -105,22 +106,22 @@ export default function App() {
     // hey aidan, typescript caught this, you need to make sure isLoaded is true to access
     // attributes of playbackStatus like positionMillis etc, because if isLoaded if false, they won't exist on the object and the app will crash in runtime
     // How did I know? Hover over AVPlaybackStatus above on line 95:
-      // (alias) type AVPlaybackStatus = {
-      //     isLoaded: false;
-      //     androidImplementation?: string;
-      //     error?: string;
-      // } | {
-      //     isLoaded: true;
-      //     androidImplementation?: string;
-      //     uri: string;
-      //     progressUpdateIntervalMillis: number;
-      //     durationMillis?: number;
-      //     positionMillis: number;
-      //     playableDurationMillis?: number;
-      //     seekMillisToleranceBefore?: number;
-      //     ... 9 more ...;
-      //     didJustFinish: boolean;
-      // }
+    // (alias) type AVPlaybackStatus = {
+    //     isLoaded: false;
+    //     androidImplementation?: string;
+    //     error?: string;
+    // } | {
+    //     isLoaded: true;
+    //     androidImplementation?: string;
+    //     uri: string;
+    //     progressUpdateIntervalMillis: number;
+    //     durationMillis?: number;
+    //     positionMillis: number;
+    //     playableDurationMillis?: number;
+    //     seekMillisToleranceBefore?: number;
+    //     ... 9 more ...;
+    //     didJustFinish: boolean;
+    // }
     // see how more attributes exist when isLoaded is true?
     if (playbackStatus.isLoaded) {
       setStatus(playbackStatus);
@@ -152,7 +153,7 @@ export default function App() {
     await sound.playAsync();
     //setIsPlaying("Sound playing " + true);  <- TS infered that setIsplaying is a boolean because you did useState(false), so setting it as a string here might be a problem.
     // did you mean
-    setIsPlaying(true)
+    setIsPlaying(true);
 
     if (status.isLoaded) console.log(status.isPlaying); // yep TS said you need to check isLoaded or you wont be able to know if it's playing
     reloadStatus();
@@ -164,7 +165,7 @@ export default function App() {
     console.log("pauseSound Called");
     await sound.pauseAsync();
     setIsPlaying(false);
-    if(status.isLoaded) console.log("Sound playing " + status.isPlaying); // yep TS said you need to check isLoaded or you wont be able to know if it's playing
+    if (status.isLoaded) console.log("Sound playing " + status.isPlaying); // yep TS said you need to check isLoaded or you wont be able to know if it's playing
     reloadStatus();
     // setIsPlaying(false)
   }
@@ -193,7 +194,7 @@ export default function App() {
       await sound.setRateAsync(currentRate + increment, true);
       //let AVPlaybackStatus = await sound.getStatusAsync();
       reloadStatus();
-        console.log("Speed is " + status.rate);
+      console.log("Speed is " + status.rate);
     }
   }
 
@@ -216,20 +217,19 @@ export default function App() {
     <View style={{ flex: 1 }}>
       <View style={{ flex: 0.5 }}></View>
       <View style={{ flex: 5, justifyContent: "center" }}>
-        
-          <Image
-            style={styles.imagePosition}
-            source={
-              status.isLoaded  //   see line 244 
-                ? playlist[currentIndex].imageSource
-                : require("../assets/images/hairGod.jpg")
-            } 
-          ></Image>
-        
+        <Image
+          style={styles.imagePosition}
+          source={
+            status.isLoaded //   see line 244
+              ? playlist[currentIndex].imageSource
+              : require("../assets/images/hairGod.jpg")
+          }
+        ></Image>
       </View>
       <View style={{ flex: 1, alignSelf: "center" }}>
         <Text>
-          {status.isLoaded ? playlist[currentIndex].name : "nothing loaded"} {/* see line 244 */}
+          {status.isLoaded ? playlist[currentIndex].name : "nothing loaded"}{" "}
+          {/* see line 244 */}
         </Text>
       </View>
       <View
@@ -249,7 +249,7 @@ export default function App() {
             minimumValue={0}
             // maximumValue={isLoaded ? status.durationMillis : 1000}   <- lol this one's more complicated, TS is not smart enough to know that isLoaded is at all connected to status.isLoaded,
             // and will complain that .durationMillis will not exist (even though you are making sure it will) anywaaay just change it to this:
-            maximumValue={(status.isLoaded) ? status.durationMillis : 1000}
+            maximumValue={status.isLoaded ? status.durationMillis : 1000}
             thumbTintColor="#04A5BA"
           />
         </View>
@@ -258,12 +258,14 @@ export default function App() {
       <View style={{ flex: 0.5, flexDirection: "row" }}>
         <View style={{ flex: 1 }}>
           <Text style={{ paddingLeft: 20 }}>
-            {status.isLoaded ? millisToTime(status.positionMillis) : ""} {/* see line 244 */}
+            {status.isLoaded ? millisToTime(status.positionMillis) : ""}{" "}
+            {/* see line 244 */}
           </Text>
         </View>
         <View style={{ flex: 1, alignItems: "flex-end" }}>
           <Text style={{ paddingRight: 20 }}>
-            {status.isLoaded ? millisToTime(status.durationMillis) : ""} {/* see line 244 */}
+            {status.isLoaded ? millisToTime(status.durationMillis) : ""}{" "}
+            {/* see line 244 */}
           </Text>
         </View>
       </View>

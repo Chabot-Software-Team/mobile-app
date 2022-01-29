@@ -156,7 +156,7 @@ export default function App() {
       navigation.navigate("Page2");
     }
     else if (text == "113") {
-      navigation.navigate("Map");
+      navigation.navigate("Map.tsx");
       console.log("going to map");
     }
     

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import { LinkingOptions, NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
@@ -78,10 +78,57 @@ function NavigationPageStackScreen() {
 //   );
 // }
 
+// const Tab = createBottomTabNavigator();
+// export default function App() {
+//   return (
+//     <NavigationContainer>
+//       <Tab.Navigator>
+//         <Tab.Screen
+//           name="Home"
+//           component={HomeStackScreen}
+//           options={{
+//             tabBarIcon: () => <Ionicons name="home-outline" size={20} />,
+//           }}
+//         />
+//         {
+
+//         //The audioplayer is currently broken, so I removed it from the navigator until it is fixed
+
+//         /*<Tab.Screen
+//           name="Audio"
+//           component={AudioPlayerStackScreen}
+//           options={{
+//             tabBarIcon: () => <Ionicons name="headset-outline" size={20} />,
+//           }}
+//         />*/}
+//         <Tab.Screen
+//           name="QrScan"
+//           component={QrScanStackScreen}
+//           options={{
+//             tabBarIcon: () => <Ionicons name="qr-code-outline" size={20} />,
+//           }}
+//         />
+//         <Tab.Screen
+//           name="More"
+//           component={NavigationPageStackScreen}
+//           options={{
+//             tabBarIcon: () => <Ionicons name="add-outline" size={20} />,
+//           }}
+//         />
+//       </Tab.Navigator>
+//     </NavigationContainer>
+//   );
+// }
+
 const Tab = createBottomTabNavigator();
-export default function App() {
+interface ITabNavigationProps {
+  linking: LinkingOptions;
+}
+const TabNavigation: React.FC<ITabNavigationProps> = (
+  props: ITabNavigationProps
+) => {
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={props.linking}>
       <Tab.Navigator>
         <Tab.Screen
           name="Home"
@@ -90,17 +137,13 @@ export default function App() {
             tabBarIcon: () => <Ionicons name="home-outline" size={20} />,
           }}
         />
-        {
-        
-        //The audioplayer is currently broken, so I removed it from the navigator until it is fixed
-        
-        /*<Tab.Screen
+        <Tab.Screen
           name="Audio"
           component={AudioPlayerStackScreen}
           options={{
             tabBarIcon: () => <Ionicons name="headset-outline" size={20} />,
           }}
-        />*/}
+        />
         <Tab.Screen
           name="QrScan"
           component={QrScanStackScreen}
@@ -118,4 +161,5 @@ export default function App() {
       </Tab.Navigator>
     </NavigationContainer>
   );
-}
+};
+export default TabNavigation;
