@@ -1,3 +1,6 @@
+//This is the one that isn't hooked up rn
+
+
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -46,7 +49,7 @@ function QrScanStackScreen() {
       <QRScanStack.Screen name='QrScan' component={QrScan} />
       <QRScanStack.Screen name='Page1' component={Page1} />
       <QRScanStack.Screen name='Page2' component={Page2} />
-      <QRScanStack.Screen name='Map' component={Map} />
+      
       
 
     </QRScanStack.Navigator>

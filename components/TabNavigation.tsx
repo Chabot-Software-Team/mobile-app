@@ -13,6 +13,7 @@ import Calendar from "../pages/Calendar";
 
 import Page1 from "../pages/articles/Page1";
 import Page2 from "../pages/articles/Page2";
+import Map from "../pages/Map";
 
 import Staff from "../pages/subpages/Staff";
 import Weather from "../pages/subpages/Weather";
@@ -42,6 +43,7 @@ function QrScanStackScreen() {
       <QRScanStack.Screen name="QrScan" component={QrScan} />
       <QRScanStack.Screen name="Page1" component={Page1} />
       <QRScanStack.Screen name="Page2" component={Page2} />
+      <QRScanStack.Screen name="Map" component={Map} />
     </QRScanStack.Navigator>
   );
 }
