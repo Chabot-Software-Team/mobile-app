@@ -11,6 +11,7 @@ import NavigationPage from "../pages/NavigationPage";
 import QrScan from "../pages/QrScan";
 import Calendar from "../pages/Calendar";
 
+
 import Page1 from "../pages/articles/Page1";
 import Page2 from "../pages/articles/Page2";
 import Map from "../pages/Map";
@@ -65,6 +66,7 @@ function NavigationPageStackScreen() {
       <NavigationPageStack.Screen name="More" component={NavigationPage} />
       <NavigationPageStack.Screen name="Staff" component={Staff} />
       <NavigationPageStack.Screen name="Weather" component={Weather} />
+      <NavigationPageStack.Screen name="Map" component={Map} />
     </NavigationPageStack.Navigator>
   );
 }
