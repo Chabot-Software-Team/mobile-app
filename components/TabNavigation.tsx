@@ -139,6 +139,7 @@ const TabNavigation: React.FC<ITabNavigationProps> = (
             tabBarIcon: () => <Ionicons name="home-outline" size={20} />,
           }}
         />
+        {/*
         <Tab.Screen
           name="Audio"
           component={AudioPlayerStackScreen}
@@ -146,6 +147,7 @@ const TabNavigation: React.FC<ITabNavigationProps> = (
             tabBarIcon: () => <Ionicons name="headset-outline" size={20} />,
           }}
         />
+        */}
         <Tab.Screen
           name="QrScan"
           component={QrScanStackScreen}

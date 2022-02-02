@@ -9,6 +9,7 @@
     "watch": "tsc -w"
   },
   "dependencies": {
+    "@openspacelabs/react-native-zoomable-view": "^2.0.0",
     "@react-navigation/bottom-tabs": "^5.11.7",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
@@ -19,7 +20,7 @@
     "expo-av": "~9.2.3",
     "expo-barcode-scanner": "~10.2.2",
     "expo-cli": "^5.0.3",
-    "expo-linking": "^3.0.0",
+    "expo-linking": "2.3.1",
     "expo-status-bar": "~1.0.3",
     "install-peers": "^1.0.3",
     "lottie-ios": "3.1.8",
