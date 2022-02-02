@@ -38,6 +38,11 @@ export default function NavigationPage() {
       iconName: "person",
       file: "./Calendar.js",
     },
+    {
+      name: "Map",
+      iconName: "map",
+      file: "./Calendar.js",
+    },
   ] as const;
 
   return (

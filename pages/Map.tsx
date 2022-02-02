@@ -1,11 +1,19 @@
 import * as React from "react";
-import MapView from "react-native-maps";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, View, Dimensions, Image } from "react-native";
+import ImageZoom from "react-native-image-pan-zoom";
 //<MapView style={styles.map} />
 export default function Map() {
   return (
     <View style={styles.container}>
-      <MapView style={styles.map} />
+      <ImageZoom
+        cropWidth={Dimensions.get('window').width}
+                       cropHeight={Dimensions.get('window').height}
+                       imageWidth={(((Dimensions.get("window")).width))}
+                       imageHeight={(((Dimensions.get("window")).width)/2344*1290)}>
+                <Image style={{width:(((Dimensions.get("window")).width)), height:(((Dimensions.get("window")).width)/2344*1290)}}
+                               source={require("../assets/images/chabot-maps.png")}/>
+            
+            </ImageZoom>
     </View>
   );
 }
@@ -16,9 +24,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
-  map: {
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
-  },
+  }
 });
