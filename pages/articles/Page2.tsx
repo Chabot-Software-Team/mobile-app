@@ -16,8 +16,8 @@ export default function Page2() {
           // dimensions when it's rendered naturally. Not the intrinsic size.
           // For example, an image with an intrinsic size of 400x200 will be rendered as 300x150 in this case.
           // Therefore, we'll feed the zoomable view the 300x150 size.
-          contentWidth={300}
-          contentHeight={150}
+          contentWidth={200}
+          contentHeight={100}
         >
           <ImageBackground source={image} resizeMode="cover" style={styles.image}>
 
