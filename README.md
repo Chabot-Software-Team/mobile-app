@@ -1,7 +1,7 @@
 # mobile-app
 <br>  
 
-## Note: If you'd like to contribute, please post your GitHub email in #software-engineering on the Discord server, and I'll be happy to add you. Thanks! :) Also, scroll down for a guide to Git if you're confused.
+## Note: If you'd like to contribute, please post your GitHub email in #app-subteam on the Discord server, and I'll be happy to add you. Thanks! :) Also, scroll down for a guide to Git if you're confused.
 <br>  
 
 # Overview
@@ -9,17 +9,9 @@
 ### **Description**
 This is the repository for a mobile app by the [Chabot Space &amp; Science Center](https://chabotspace.org/) Galaxy Explorer Software Engineering Team. Created using [React Native.](https://reactnative.dev/)  
 <br>  
-### **Members**
+### **Contributors**
 * aidansunbury
-* Rileyc2022  
-* dexter36310  
-* MaxAndelman  
-* Miha Bhaskaran  
-* rishita678  
-* Robbie Sylvia  
-* theobakshi12  
-* timzhou16US  
-* Katrina Lee  
+* Rileyc2022 
 <br>
 
 ### **Latest Screenshots**  
