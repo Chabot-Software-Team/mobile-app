@@ -1,0 +1,27 @@
+App Todo List
+
+Priorities 
+
+1. Deep Linking
+    Allow us to link to pages within the app using normal qr codes, instead of having to scan them within the app
+
+2. Image Gallery
+    Create a rotating image galley component for exhibit pages
+    Users should be able to pan forwards and backwards
+
+3. Interactive Map
+    Get access to high quality images of the center Map
+    Create annotation components to give additional information about exhibits and link to exhibit pages
+
+4. Movies
+    Get access to movie schedule and descriptions for movies page
+
+5. Create article page formats and global styles
+    
+
+Later
+
+
+1. Fix audio player (which may or may not be used)
+2. Generally make everything look prettier
+
