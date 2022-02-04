@@ -8,6 +8,9 @@ Priorities
 2. Image Gallery
     Create a rotating image galley component for exhibit pages
     Users should be able to pan forwards and backwards
+    https://www.npmjs.com/package/react-native-snap-carousel
+    https://www.npmjs.com/package/react-native-image-gallery#scroll-state-and-events
+
 
 3. Interactive Map
     Get access to high quality images of the center Map
@@ -17,7 +20,8 @@ Priorities
     Get access to movie schedule and descriptions for movies page
 
 5. Create article page formats and global styles
-    
+    https://chabotspace.org/visit/exhibits/the-nasa-experience/
+    (Feb Meeting have three teams each make a page for each exhibit)
 
 Later
 
