@@ -15,7 +15,11 @@ const globalStyles = StyleSheet.create({
     alignSelf: "center",
   },
 
-  buttons: {},
+  mapButtons: {
+    backgroundColor: "#2ED0CF",
+    
+    
+  },
 });
 
 export { globalStyles };
