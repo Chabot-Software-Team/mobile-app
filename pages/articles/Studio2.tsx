@@ -1,10 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
 
 export default function Studio2() {
   return (
     <ScrollView>
-      <Text>Studio2</Text>
+      {/*ajfeasdf */}
+      <Text>Studio2 hehee</Text>
     </ScrollView>
   );
 }
