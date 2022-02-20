@@ -23,9 +23,12 @@ Priorities
     https://chabotspace.org/visit/exhibits/the-nasa-experience/
     (Feb Meeting have three teams each make a page for each exhibit)
 
+6. Fix Calendar.tsx such that it does not crash the app
+
 Later
 
 
+
 1. Fix audio player (which may or may not be used)
-2. Generally make everything look prettier ( https://mui.com/)
+2. Generally make everything look prettier ()
 

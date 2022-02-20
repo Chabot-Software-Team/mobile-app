@@ -16,10 +16,18 @@ export default function Page2() {
   //const zoomableViewRef = React.createRef<ReactNativeZoomableView>();
   const [modalVisible, setModalVisible] = useState(false);
 
+  const zoomableViewRef = React.createRef<ReactNativeZoomableView>();
+
+  const [zoomableViewStatus, setZoomableViewStatus] = useState(zoomableViewRef);
+
+  const [zoomLevel, setZoomLevel] = useState(1);
+
   function handlePressed() {
     console.log("pressed 1");
     setModalVisible(true);
   }
+
+  //onZoomAfter = {() => setZoomLevel(zoomableViewRef.current.zoomLevel)}
 
   return (
     <View style={styles.container}>
@@ -28,6 +36,8 @@ export default function Page2() {
           maxZoom={2.5}
           minZoom={1}
           style={styles.zoomableView}
+          ref={zoomableViewRef}
+          onZoomAfter={() => setZoomLevel(1)}
         >
           <ImageBackground
             source={{ uri: "https://i.imgur.com/jX39ibS.png" }}
@@ -55,6 +65,29 @@ export default function Page2() {
             >
               <Ionicons name="arrow-down" size={20}></Ionicons>
             </TouchableOpacity>
+
+            <TouchableOpacity
+              style={{ position: "absolute", left: 80, top: 200 }}
+              onPress={() => zoomableViewRef.current.moveBy(-30, 0)}
+            >
+              <Ionicons name="arrow-down" size={20}></Ionicons>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={{ position: "absolute", left: 110, top: 200 }}
+              onPress={() => console.log(zoomableViewRef)}
+            >
+              <Ionicons name="arrow-down" size={20}></Ionicons>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={{ position: "absolute", left: 140, top: 200 }}
+              onPress={() => console.log(zoomableViewStatus)}
+            >
+              <Ionicons name="arrow-down" size={20}></Ionicons>
+            </TouchableOpacity>
+
+            <Text>"hello" + {}</Text>
 
             <View
               style={{

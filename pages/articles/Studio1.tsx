@@ -6,14 +6,15 @@ import { globalStyles } from "../globalStyles";
 import { useFonts } from "expo-font";
 
 export default function Studio1() {
-  let [loaded] = useFonts({
+  /*
+  const [loaded] = useFonts({
     Futura: require("futur.ttf"),
   });
 
   if (!loaded) {
     return null;
   }
-
+*/
   return (
     <ScrollView>
       <Text style={styles.paragraphText}>Studio1</Text>
