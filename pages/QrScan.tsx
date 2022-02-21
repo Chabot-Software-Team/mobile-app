@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 import { BarCodeScanner } from "expo-barcode-scanner";
-
+ 
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "#2ed0cf",
