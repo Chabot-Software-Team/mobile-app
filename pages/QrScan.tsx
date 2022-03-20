@@ -171,6 +171,8 @@ export default function App() {
       navigation.navigate("Studio2");
     } else if (text == "3") {
       navigation.navigate("Studio3");
+    } else if (text == "5") {
+      navigation.navigate("ObservationDeck");
     }
   }
 

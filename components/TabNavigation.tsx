@@ -23,6 +23,7 @@ import Map from "../pages/Map";
 
 import Staff from "../pages/subpages/Staff";
 import Weather from "../pages/subpages/Weather";
+import ObservationDeck from "../pages/articles/ObservationDeck";
 
 const HomeStack = createStackNavigator();
 function HomeStackScreen() {
@@ -54,6 +55,7 @@ function QrScanStackScreen() {
       <QRScanStack.Screen name="Studio1" component={Studio1} />
       <QRScanStack.Screen name="Studio2" component={Studio2} />
       <QRScanStack.Screen name="Studio3" component={Studio3} />
+      <QRScanStack.Screen name="ObservationDeck" component={ObservationDeck} />
     </QRScanStack.Navigator>
   );
 }

@@ -1,13 +1,28 @@
 import React from "react";
 import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
 
-//import CaptionedImage from ".../components/CaptionedImage";
+import CaptionedImage from "../../components/CaptionedImage";
 
 export default function Studio2() {
   return (
     <ScrollView>
       {/*Headder*/}
-
+      <CaptionedImage
+        style={{ width: 100, height: 100 }}
+        text1={"hello"}
+        uri={
+          "https://chabotspace.org/wp-content/uploads/2022/02/thumbnail_Image-13-e1644261252348.jpg"
+        }
+      ></CaptionedImage>
+      <CaptionedImage
+        style={{ width: 200, height: 100 }}
+        text1={"hello"}
+        text2={"bye"}
+        uri={
+          "https://chabotspace.org/wp-content/uploads/2018/10/191-1-468x314.jpg"
+        }
+      ></CaptionedImage>
+      <CaptionedImage text2={"bye"}></CaptionedImage>
       <Text>STUDIO 2: GOING THE DISTANCE</Text>
       <Image
         style={styles.image}
