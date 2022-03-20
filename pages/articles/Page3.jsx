@@ -65,6 +65,7 @@ export default function Page3() {
     // setZoomStatus(zoomableViewRef.current.offsetX);
     // setZoomLevel(zoomableViewRef.current.zoomLevel);
     setZoomViewStatus(zoomableViewRef.current);
+    //console.log(zoomViewStatus);
   }
 
   // capture event is supposedly necessary to make it work with modals
@@ -77,30 +78,7 @@ Use the zoom data to load the component in different positions
 
   /**
    *
-   *
-   */
-
-  return (
-    <View style={styles.container}>
-      <View
-        style={{
-          borderWidth: 1,
-          flexShrink: 1,
-          height: windowHeight / 1.5,
-          width: windowWidth,
-        }}
-      >
-        <ReactNativeZoomableView
-          maxZoom={2.5}
-          minZoom={1}
-          style={styles.zoomableView}
-          onZoomAfter={() => updateStatus()}
-          onShiftingAfter={() => updateStatus()}
-          onDoubleTapAfter={() => updateStatus()}
-          captureEvent={false}
-          ref={zoomableViewRef}
-        >
-          <Modal
+   *<Modal
             visible={modalVisible}
             transparent={true}
             onRequestClose={() => {
@@ -126,7 +104,32 @@ Use the zoom data to load the component in different positions
               ></View>
             </TouchableOpacity>
           </Modal>
+   */
 
+  //updateStatus();
+
+  //use useLayoutEffect or maybe useEffect hook to run updateStatus before the render https://reactjs.org/docs/hooks-reference.html#uselayouteffect
+
+  return (
+    <View style={styles.container}>
+      <View
+        style={{
+          borderWidth: 1,
+          flexShrink: 1,
+          height: windowHeight / 1.5,
+          width: windowWidth,
+        }}
+      >
+        <ReactNativeZoomableView
+          maxZoom={2.5}
+          minZoom={1}
+          style={styles.zoomableView}
+          onZoomAfter={() => updateStatus()}
+          onShiftingAfter={() => updateStatus()}
+          onDoubleTapAfter={() => updateStatus()}
+          captureEvent={false}
+          ref={zoomableViewRef}
+        >
           <ImageBackground
             source={{ uri: "https://i.imgur.com/jX39ibS.png" }}
             resizeMode="cover"
@@ -141,7 +144,7 @@ Use the zoom data to load the component in different positions
 
             <TouchableOpacity
               style={{ position: "absolute", left: 100, top: 100 }}
-              onPress={() => console.log("pressed ")}
+              onPress={() => console.log(zoomViewStatus)}
             >
               <Ionicons name="arrow-down" size={20}></Ionicons>
             </TouchableOpacity>
@@ -168,7 +171,10 @@ Use the zoom data to load the component in different positions
       <View style={{ flexDirection: "row" }}>
         <Text>
           {" "}
-          offsetY = {zoomViewStatus.offsetY} offsetX = {zoomViewStatus.offsetX}
+          offsetX =
+          {/*offsetX = {zoomViewStatus.offsetX}    offsetY = {typeof zoomViewStatus.offsetY == "undefined"
+            ? 50
+            : 100}{" "}*/}
         </Text>
       </View>
     </View>

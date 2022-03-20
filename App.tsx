@@ -11,8 +11,6 @@ export default function App() {
     Futura: require("./assets/fonts/futura/Futura_Medium_bt.ttf"),
   });
 
-
-
   const linking = {
     prefixes: [prefix],
     config: {
@@ -34,7 +32,7 @@ export default function App() {
       Linking.removeEventListener("url", handleDeepLink);
     };
   }, []);
-  
+
   if (!loaded) return null;
   return <TabNavigation linking={linking} />;
 }

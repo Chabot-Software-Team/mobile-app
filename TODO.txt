@@ -31,4 +31,5 @@ Later
 
 1. Fix audio player (which may or may not be used)
 2. Generally make everything look prettier ()
+3. Translations of museum content (we will get Translations given to us, but we will have to be able to switch out to the translated versions)
 
