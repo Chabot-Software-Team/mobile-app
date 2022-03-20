@@ -19,7 +19,7 @@ export default function NavigationPage() {
       file: "./Calendar.js",
     },
     {
-      name: "Calendar Events",
+      name: "Calendar",
       iconName: "calendar-outline",
       file: "./Calendar.js",
     },

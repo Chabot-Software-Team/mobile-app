@@ -79,23 +79,28 @@ const HomeCarousel = () => {
       marginRight: 1,
     },
     cardTitle: {
+      fontFamily: "Futura",
       fontSize: 20,
       color: "#2ED0CF",
       marginTop: 10,
     },
     cardDate: {
+      fontFamily: "Futura",
       fontSize: 15,
       color: "white",
       fontWeight: "bold",
       marginTop: 10,
     },
     cardDesc: {
+      fontFamily: "Futura",
       fontSize: 15,
       color: "white",
       marginTop: 30,
+      lineHeight: 18
     },
     findMore: {
-      padding: 2,
+      fontFamily: "Futura",
+      textAlign: "center"
     },
     button: {
       backgroundColor: "#2ED0CF",
@@ -119,7 +124,7 @@ const HomeCarousel = () => {
           <Text style={styles.cardDesc}>{item.desc}</Text>
         </View>
         <TouchableOpacity style={styles.button} onPress={onPress}>
-          <Text style={{ textAlign: "center" }}>Find out more</Text>
+          <Text style={styles.findMore}>Find out more</Text>
         </TouchableOpacity>
       </View>
     );

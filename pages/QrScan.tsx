@@ -163,6 +163,8 @@ export default function App() {
     } else if (text == "113") {
       navigation.navigate("Map");
       console.log("going to map");
+    } else if (text == "4") {
+      navigation.navigate("Page3");
     } else if (text == "1") {
       navigation.navigate("Studio1");
     } else if (text == "2") {

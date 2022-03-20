@@ -13,6 +13,7 @@ import Calendar from "../pages/Calendar";
 
 import Page1 from "../pages/articles/Page1";
 import Page2 from "../pages/articles/Page2";
+import Page3 from "../pages/articles/Page3";
 
 import Studio1 from "../pages/articles/Studio1";
 import Studio2 from "../pages/articles/Studio2";
@@ -48,6 +49,7 @@ function QrScanStackScreen() {
       <QRScanStack.Screen name="QrScan" component={QrScan} />
       <QRScanStack.Screen name="Page1" component={Page1} />
       <QRScanStack.Screen name="Page2" component={Page2} />
+      <QRScanStack.Screen name="Page3" component={Page3} />
       <QRScanStack.Screen name="Map" component={Map} />
       <QRScanStack.Screen name="Studio1" component={Studio1} />
       <QRScanStack.Screen name="Studio2" component={Studio2} />
@@ -74,6 +76,7 @@ function NavigationPageStackScreen() {
       <NavigationPageStack.Screen name="Staff" component={Staff} />
       <NavigationPageStack.Screen name="Weather" component={Weather} />
       <NavigationPageStack.Screen name="Map" component={Map} />
+      <CalendarStack.Screen name="Calendar" component={Calendar} />
     </NavigationPageStack.Navigator>
   );
 }

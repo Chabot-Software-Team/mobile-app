@@ -1,3 +1,4 @@
+import { useFonts } from "expo-font";
 import React from "react";
 import { Text, View, Image, Dimensions, StyleSheet } from "react-native";
 import HomeCarousel from "../components/HomeCarousel";
@@ -30,6 +31,7 @@ function Home() {
       height: 483 * ratio2,
     },
     title: {
+      fontFamily: "Futura",
       color: "#1B2832",
       padding: 30,
       fontSize: 20,
