@@ -10,9 +10,9 @@ import CaptionedImage from "../../components/CaptionedImage";
 export default function ObservationDeck() {
   return (
     <ScrollView>
-      <View>
+      {/*<View>
         <YoutubePlayer height={300} play={true} videoId={"84WIaK3bl_s"} />
-      </View>
+      </View>*/}
       <CaptionedImage
         headerText={"OBSERVATION DECK"}
         uri={
@@ -39,7 +39,7 @@ export default function ObservationDeck() {
         bodyText={
           "At the Sky Station, visitors will use a variety of tools to notice and investigate the conditions of the daytime sky and atmosphere around them."
         }
-      ></CaptionedImage>{" "}
+      ></CaptionedImage>
       <CaptionedImage
         subHeaderText={"SKY MIRROR"}
         uri={
@@ -74,15 +74,6 @@ export default function ObservationDeck() {
         }
         bodyText={
           "At the Lab Bench, visitors can examine materials from the landscape under mounted magnifying glasses. Each station will include an area for sketching observations, recording micro details, or taking rubbings. The lab bench allows for a prolonged investigation of materials that we often breeze by at a glance. Pine needles, grass, local flowers and rocks will take center stage. Chabot staff will have the opportunity to seed this exhibit with local materials that are intriguing and relevant to the season and location. This exhibit will provide a space for reflection, interpretation, sharing and questioning."
-        }
-      ></CaptionedImage>
-      <CaptionedImage
-        subHeaderText={"Sound Observatory"}
-        uri={
-          "http://chabotspace.org/wp-content/uploads/2018/07/observation-deck-1.png"
-        }
-        bodyText={
-          "The Sound Observatory is an environmental sound experience that samples the universe at all scales. Sonified earthquakes, quarks and songbirds are all at the fingertips of visitors willing to spend some time observing the universe with their ears. Sounds have been collected from NASA’s sound library and field researchers who utilize sound’s unique capacity to “see” the world in new ways."
         }
       ></CaptionedImage>
       <CaptionedImage
@@ -136,3 +127,8 @@ export default function ObservationDeck() {
     </ScrollView>
   );
 }
+
+/**
+ *
+ *
+ */
