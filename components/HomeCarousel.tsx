@@ -5,6 +5,7 @@ import {
   Dimensions,
   StyleSheet,
   TouchableOpacity,
+  Linking
 } from "react-native";
 import Carousel from "react-native-snap-carousel";
 import LottieView from "lottie-react-native";
@@ -20,8 +21,9 @@ const HomeCarousel = () => {
     title: string;
     date: string;
     desc: string;
+    link: string;
     constructor() {
-      this.title, this.date, this.desc;
+      this.title, this.date, this.desc, this.link;
     }
   }
 
@@ -42,12 +44,15 @@ const HomeCarousel = () => {
           .find(".tribe-events-list-event-title")
           .text()
           .trim();
+        event.link = $(this)
+          .find(".tribe-events-list-event-title")
+          .find("a")
+          .attr("href");
         event.date = $(this)
           .find(".tribe-event-schedule-details")
           .text()
           .trim()
           .split("|")[0];
-
         var desc = $(this)
           .find(".tribe-events-list-event-description")
           .children()
@@ -110,12 +115,13 @@ const HomeCarousel = () => {
     },
   });
 
-  const onPress = () => {
+  const onPress = (link: string) => {
+    Linking.openURL(link);
     // handle find more button press
   };
 
   // const _renderItem = ({ item, index }) => {
-  const _renderItem = ({ item }: any) => {
+  const _renderItem = ({ item }: {item: Event}) => {
     return (
       <View style={styles.card}>
         <View>
@@ -123,7 +129,7 @@ const HomeCarousel = () => {
           <Text style={styles.cardDate}>{item.date}</Text>
           <Text style={styles.cardDesc}>{item.desc}</Text>
         </View>
-        <TouchableOpacity style={styles.button} onPress={onPress}>
+        <TouchableOpacity style={styles.button} onPress={() => { onPress(item.link) }}>
           <Text style={styles.findMore}>Find out more</Text>
         </TouchableOpacity>
       </View>
